@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { allProjects } from "../data/projects";
+---
+
+<BaseLayout title="Work | NearDivine Labs">
+  <main class="mx-auto max-w-6xl px-6 pt-32">
+    <section class="pb-20">
+      <p class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-500">
+        Work
+      </p>
+
+      <h1 class="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
+        Projects, prototypes, build logs, and technical systems.
+      </h1>
+
+      <p class="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+        A collection of robotics, embedded systems, automation, web tooling, and engineering documentation.
+      </p>
+    </section>
+
+    <section class="pb-24">
+      <SectionHeader eyebrow="Selected work" title="Project Index" />
+
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {allProjects.map((project) => <ProjectCard {...project} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

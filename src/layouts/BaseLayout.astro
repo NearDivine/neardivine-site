@@ -1,0 +1,23 @@
+---
+import Nav from "../components/Nav.astro";
+import "../styles/global.css";
+
+const {
+  title = "NearDivine Labs",
+  description = "Robotics, embedded systems, automation, and technical experiments.",
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+
+  <body class="min-h-screen bg-[#08090d] text-white antialiased">
+    <Nav />
+    <slot />
+  </body>
+</html>

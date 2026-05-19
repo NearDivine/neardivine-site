@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+---
+
+<BaseLayout title="About | NearDivine Labs">
+  <main class="mx-auto max-w-6xl px-6 pt-32">
+    <section class="pb-20">
+      <p class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-500">
+        About
+      </p>
+
+      <h1 class="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
+        Practical engineering, robotics, automation, and systems learning.
+      </h1>
+
+      <p class="mt-8 max-w-3xl text-lg leading-8 text-zinc-400">
+        NearDivine Labs is my personal engineering portfolio. It collects robotics projects,
+        embedded systems work, automation infrastructure, software tools, websites, and build logs.
+      </p>
+    </section>
+
+    <section class="grid gap-6 pb-24 md:grid-cols-3">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="text-xl font-black text-white">Background</h2>
+        <p class="mt-4 leading-7 text-zinc-400">
+          My path started in the Marine Corps and moved into autonomous systems through SkillBridge
+          and hands-on robotics, electronics, and automation projects.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="text-xl font-black text-white">Focus</h2>
+        <p class="mt-4 leading-7 text-zinc-400">
+          Robotics, embedded hardware, test operations, smart-home automation, CAD, control systems,
+          and practical system integration.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="text-xl font-black text-white">Approach</h2>
+        <p class="mt-4 leading-7 text-zinc-400">
+          Build real systems, document what worked, document what failed, and keep each project
+          clear enough that another technical person can follow the process.
+        </p>
+      </div>
+    </section>
+
+    <section class="pb-24">
+      <SectionHeader eyebrow="Tools" title="Current Stack" />
+
+      <div class="flex flex-wrap gap-3">
+        {[
+          "Astro",
+          "TypeScript",
+          "Tailwind CSS",
+          "Git",
+          "Home Assistant",
+          "Frigate",
+          "FreeCAD",
+          "Betaflight",
+          "ELRS",
+          "Arduino",
+          "STM32",
+          "n8n",
+        ].map((tool) => (
+          <span class="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-zinc-300">
+            {tool}
+          </span>
+        ))}
+      </div>
+    </section>
+  </main>
+</BaseLayout>
