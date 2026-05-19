@@ -1,17 +1,133 @@
 ---
-
+import Nav from "../components/Nav.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { focusProjects, recentLogs } from "../data/projects";
+import "../styles/global.css";
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>NearDivine Labs</title>
+  </head>
+
+  <body class="min-h-screen bg-[#08090d] text-white antialiased">
+    <Nav />
+
+    <main class="mx-auto max-w-6xl px-6 pt-32">
+      <section class="grid min-h-[620px] items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
+        <div>
+          <p class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-500">
+            NearDivine Labs
+          </p>
+
+          <h1 class="max-w-3xl text-5xl font-black tracking-tight text-white md:text-7xl">
+            Robotics, embedded systems, automation, and technical experiments.
+          </h1>
+
+          <p class="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
+            A personal engineering portfolio documenting prototypes, build logs,
+            software tools, hardware systems, and applied technical learning.
+          </p>
+
+          <div class="mt-10 flex flex-wrap gap-4">
+            <a
+              href="/work"
+              class="rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-blue-100"
+            >
+              View work
+            </a>
+
+            <a
+              href="/about"
+              class="rounded-full border border-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/5"
+            >
+              About
+            </a>
+          </div>
+        </div>
+
+        <div class="relative hidden lg:block">
+          <div class="absolute -inset-8 rounded-full bg-blue-500/20 blur-3xl"></div>
+
+          <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl">
+            <div class="mb-4 flex items-center justify-between">
+              <span class="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300">
+                Lab Status
+              </span>
+              <span class="rounded-full bg-blue-500/15 px-3 py-1 text-xs font-semibold text-blue-300">
+                Active
+              </span>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-[#0d111a] p-6">
+              <div class="aspect-video rounded-xl border border-blue-400/20 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black p-6">
+                <div class="flex h-full flex-col justify-between">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">
+                      Current Build
+                    </p>
+                    <h2 class="mt-3 text-3xl font-black text-white">
+                      Applied robotics portfolio system
+                    </h2>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-3">
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                      <p class="text-2xl font-black text-white">08</p>
+                      <p class="text-xs text-zinc-500">Trackers</p>
+                    </div>
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                      <p class="text-2xl font-black text-white">FPV</p>
+                      <p class="text-xs text-zinc-500">Drone</p>
+                    </div>
+                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
+                      <p class="text-2xl font-black text-white">HA</p>
+                      <p class="text-xs text-zinc-500">Automation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p class="mt-5 text-sm leading-6 text-zinc-400">
+              Robotics, embedded hardware, automation infrastructure, CAD,
+              software tools, and build documentation collected under one lab identity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-24">
+        <SectionHeader eyebrow="Current focus" title="Active Builds" />
+
+        <div class="grid gap-6 md:grid-cols-3">
+          {focusProjects.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+      </section>
+
+      <section class="py-24">
+        <SectionHeader eyebrow="Recent work" title="Build Logs & Experiments" />
+
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {recentLogs.map((project) => (
+            <ProjectCard {...project} />
+          ))}
+        </div>
+
+        <div class="mt-10 text-center">
+          <a
+            href="/work"
+            class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-bold text-zinc-300 hover:bg-white/5 hover:text-white"
+          >
+            See more work
+          </a>
+        </div>
+      </section>
+    </main>
+  </body>
 </html>
