@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { allProjects } from "../data/projects";
+import { allProjects, workFocusAreas } from "../data/projects";
 ---
 
 <BaseLayout title="Work | NearDivine Labs">
@@ -17,14 +17,23 @@ import { allProjects } from "../data/projects";
       </h1>
 
       <p class="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
-        A collection of robotics, embedded systems, automation, web tooling, and engineering documentation.
+        A collection of robotics, drones, embedded hardware, automation systems,
+        3D printing work, and software tools.
       </p>
+
+      <div class="mt-10 flex max-w-3xl flex-wrap gap-3">
+        {workFocusAreas.map((area) => (
+          <span class="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-zinc-300">
+            {area}
+          </span>
+        ))}
+      </div>
     </section>
 
     <section class="pb-24">
       <SectionHeader eyebrow="Selected work" title="Project Index" />
 
-      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
         {allProjects.map((project) => <ProjectCard {...project} />)}
       </div>
     </section>

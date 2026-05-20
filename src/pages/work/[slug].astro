@@ -11,8 +11,10 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props;
-const gallery = project.gallery ?? [];
 
+const gallery = project.gallery ?? [];
+const stats = project.stats ?? [];
+const personalWork = project.sections?.personalWork ?? [];
 const problems = project.sections?.problems ?? [];
 const worked = project.sections?.worked ?? [];
 const unfinished = project.sections?.unfinished ?? [];
@@ -56,7 +58,7 @@ const unfinished = project.sections?.unfinished ?? [];
               class="h-full w-full object-cover"
             />
           ) : (
-            <div class="flex h-full items-center justify-center">
+            <div class="flex h-full items-center justify-center px-8 text-center">
               <span class="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300">
                 Project Visual Pending
               </span>
@@ -64,9 +66,9 @@ const unfinished = project.sections?.unfinished ?? [];
           )}
         </div>
 
-        {project.stats && (
+        {stats.length > 0 && (
           <div class="mt-5 grid gap-3">
-            {project.stats.map((stat) => (
+            {stats.map((stat) => (
               <div class="rounded-xl border border-white/10 bg-black/20 p-4 text-sm font-semibold text-zinc-300">
                 {stat}
               </div>
@@ -74,6 +76,14 @@ const unfinished = project.sections?.unfinished ?? [];
           </div>
         )}
       </div>
+    </section>
+
+    <section class="pb-20">
+      <SectionHeader eyebrow="Overview" title="Project Summary" />
+
+      <p class="max-w-3xl text-lg leading-8 text-zinc-400">
+        {project.description}
+      </p>
     </section>
 
     {project.sections ? (
@@ -90,7 +100,7 @@ const unfinished = project.sections?.unfinished ?? [];
           </div>
         </section>
 
-        {project.hardware && (
+        {project.hardware && project.hardware.length > 0 && (
           <section class="pb-24">
             <SectionHeader eyebrow="System" title="Core Hardware" />
 
@@ -99,10 +109,10 @@ const unfinished = project.sections?.unfinished ?? [];
                 <tbody>
                   {project.hardware.map(([subsystem, component]) => (
                     <tr class="border-b border-white/10 last:border-b-0">
-                      <th class="w-1/3 bg-white/[0.03] px-5 py-4 font-semibold text-zinc-300">
+                      <th class="w-1/3 bg-white/[0.03] px-5 py-4 align-top font-semibold text-zinc-300">
                         {subsystem}
                       </th>
-                      <td class="px-5 py-4 text-zinc-400">
+                      <td class="px-5 py-4 leading-6 text-zinc-400">
                         {component}
                       </td>
                     </tr>
@@ -113,17 +123,19 @@ const unfinished = project.sections?.unfinished ?? [];
           </section>
         )}
 
-        <section class="pb-24">
-          <SectionHeader eyebrow="Build process" title="What I Personally Did" />
+        {personalWork.length > 0 && (
+          <section class="pb-24">
+            <SectionHeader eyebrow="Build process" title="What I Personally Did" />
 
-          <div class="grid gap-3 md:grid-cols-2">
-            {project.sections.personalWork.map((item) => (
-              <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-zinc-300">
-                {item}
-              </div>
-            ))}
-          </div>
-        </section>
+            <div class="grid gap-3 md:grid-cols-2">
+              {personalWork.map((item) => (
+                <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-zinc-300">
+                  {item}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section class="grid items-start gap-6 pb-24 lg:grid-cols-3">
           <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
@@ -261,20 +273,42 @@ const unfinished = project.sections?.unfinished ?? [];
       const fade = card.querySelector(".expand-fade");
       const button = card.querySelector(".expand-toggle");
 
-      if (!content || !button) return;
+      if (!(content instanceof HTMLElement)) return;
+      if (!(button instanceof HTMLButtonElement)) return;
 
       const collapsedHeight = 245;
       let expanded = false;
 
       const update = () => {
+        const needsToggle = content.scrollHeight > collapsedHeight + 12;
+
+        if (!needsToggle) {
+          content.style.maxHeight = "none";
+          button.classList.add("hidden");
+
+          if (fade instanceof HTMLElement) {
+            fade.classList.add("hidden");
+          }
+
+          return;
+        }
+
+        button.classList.remove("hidden");
+
         if (expanded) {
           content.style.maxHeight = `${content.scrollHeight}px`;
           button.textContent = "Show less";
-          if (fade) fade.classList.add("hidden");
+
+          if (fade instanceof HTMLElement) {
+            fade.classList.add("hidden");
+          }
         } else {
           content.style.maxHeight = `${collapsedHeight}px`;
           button.textContent = "Read more";
-          if (fade) fade.classList.remove("hidden");
+
+          if (fade instanceof HTMLElement) {
+            fade.classList.remove("hidden");
+          }
         }
       };
 
@@ -283,6 +317,7 @@ const unfinished = project.sections?.unfinished ?? [];
         update();
       });
 
+      window.addEventListener("resize", update);
       update();
     });
   </script>

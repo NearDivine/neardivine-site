@@ -4,6 +4,9 @@ import SectionHeader from "../components/SectionHeader.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import { focusProjects, recentLogs } from "../data/projects";
 import "../styles/global.css";
+
+const recentPreview = recentLogs.slice(0, 6);
+const profileImage = "/images/profile/profile.jpg";
 ---
 
 <html lang="en">
@@ -24,12 +27,12 @@ import "../styles/global.css";
           </p>
 
           <h1 class="max-w-3xl text-5xl font-black tracking-tight text-white md:text-7xl">
-            Robotics, embedded systems, automation, and technical experiments.
+            Practical hardware projects, documented from the bench up.
           </h1>
 
           <p class="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
-            A personal engineering portfolio documenting prototypes, build logs,
-            software tools, hardware systems, and applied technical learning.
+            Robotics, drones, embedded hardware, automation, and repair work tracked through
+            wiring, testing, debugging, failed assumptions, working prototypes, and later revisions.
           </p>
 
           <div class="mt-10 flex flex-wrap gap-4">
@@ -55,46 +58,42 @@ import "../styles/global.css";
           <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6 shadow-2xl">
             <div class="mb-4 flex items-center justify-between">
               <span class="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300">
-                Lab Status
+                Active Projects
               </span>
+
               <span class="rounded-full bg-blue-500/15 px-3 py-1 text-xs font-semibold text-blue-300">
-                Active
+                Live
               </span>
             </div>
 
             <div class="rounded-2xl border border-white/10 bg-[#0d111a] p-6">
-              <div class="aspect-video rounded-xl border border-blue-400/20 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black p-6">
-                <div class="flex h-full flex-col justify-between">
-                  <div>
-                    <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">
-                      Current Build
-                    </p>
-                    <h2 class="mt-3 text-3xl font-black text-white">
-                      Applied robotics portfolio system
-                    </h2>
-                  </div>
+              <div class="rounded-xl border border-blue-400/20 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black p-5">
+                <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">
+                  Current Focus
+                </p>
 
-                  <div class="grid grid-cols-3 gap-3">
-                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                      <p class="text-2xl font-black text-white">08</p>
-                      <p class="text-xs text-zinc-500">Trackers</p>
-                    </div>
-                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                      <p class="text-2xl font-black text-white">FPV</p>
-                      <p class="text-xs text-zinc-500">Drone</p>
-                    </div>
-                    <div class="rounded-xl border border-white/10 bg-white/[0.04] p-3">
-                      <p class="text-2xl font-black text-white">HA</p>
-                      <p class="text-xs text-zinc-500">Automation</p>
-                    </div>
-                  </div>
+                <div class="mt-5 grid gap-3">
+                  {focusProjects.map((project) => (
+                    <a
+                      href={project.href}
+                      class="rounded-xl border border-white/10 bg-black/20 p-4 transition hover:border-blue-400/40 hover:bg-white/[0.04]"
+                    >
+                      <p class="text-lg font-black leading-tight text-white">
+                        {project.title}
+                      </p>
+
+                      <p class="mt-1 text-xs text-zinc-500">
+                        {project.category}
+                      </p>
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
 
             <p class="mt-5 text-sm leading-6 text-zinc-400">
-              Robotics, embedded hardware, automation infrastructure, CAD,
-              software tools, and build documentation collected under one lab identity.
+              Current work is centered on cleaning up the documentation around the spider robot,
+              FPV quadcopter, restored printer, and other hardware builds.
             </p>
           </div>
         </div>
@@ -103,7 +102,7 @@ import "../styles/global.css";
       <section class="py-24">
         <SectionHeader eyebrow="Current focus" title="Active Builds" />
 
-        <div class="grid gap-6 md:grid-cols-3">
+        <div class="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
           {focusProjects.map((project) => (
             <ProjectCard {...project} />
           ))}
@@ -113,8 +112,8 @@ import "../styles/global.css";
       <section class="py-24">
         <SectionHeader eyebrow="Recent work" title="Build Logs & Experiments" />
 
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {recentLogs.map((project) => (
+        <div class="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {recentPreview.map((project) => (
             <ProjectCard {...project} />
           ))}
         </div>
@@ -122,10 +121,67 @@ import "../styles/global.css";
         <div class="mt-10 text-center">
           <a
             href="/work"
-            class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-bold text-zinc-300 hover:bg-white/5 hover:text-white"
+            class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-bold text-zinc-300 transition hover:bg-white/5 hover:text-white"
           >
             See more work
           </a>
+        </div>
+      </section>
+
+      <section class="py-24">
+        <div class="grid gap-12 border-t border-white/10 pt-20 lg:grid-cols-[1fr_0.42fr] lg:items-start">
+          <div>
+            <p class="mb-5 text-xs font-semibold uppercase tracking-[0.35em] text-blue-400">
+              About Me
+            </p>
+
+            <h2 class="max-w-3xl text-4xl font-black tracking-tight text-white md:text-5xl">
+              I came into robotics through field work, broken hardware, and unfinished prototypes.
+            </h2>
+
+            <div class="mt-8 max-w-3xl space-y-6 text-base leading-8 text-zinc-400">
+              <p>
+                I started from hands-on mechanical and electrical troubleshooting in the Marine Corps,
+                then moved into autonomous vehicle testing through Glydways. Most of my learning has come
+                from building real systems before I had a clean theory for them: FPV drones, a robotic spider
+                platform, restored 3D printers, smart home automation, embedded control projects, and small
+                hardware repairs that forced me to understand power, wiring, firmware, and failure modes.
+              </p>
+
+              <p>
+                This portfolio is the record of that progression. I am not presenting the work as perfect or
+                finished. The point is to show the actual technical path: what I built, what I misunderstood,
+                what failed under test, what I fixed, and how each project moves me closer to deeper robotics,
+                autonomy, and practical engineering skill.
+              </p>
+            </div>
+
+            <div class="mt-8">
+              <a
+                href="/about"
+                class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-bold text-zinc-300 transition hover:bg-white/5 hover:text-white"
+              >
+                More about me
+              </a>
+            </div>
+          </div>
+
+          <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-4">
+            <div class="aspect-[4/5] overflow-hidden rounded-[1.5rem] bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
+              <img
+                src={profileImage}
+                alt="NearDivine Labs profile"
+                class="h-full w-full object-cover"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+
+              <div class="hidden h-full w-full items-center justify-center px-8 text-center">
+                <span class="text-xs font-bold uppercase tracking-[0.35em] text-blue-300">
+                  Profile Image Pending
+                </span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </main>
