@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Project Capsule Beta | NearDivine Labs">
+  <main class="mx-auto max-w-5xl px-6 py-24">
+    <section class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+      <div>
+        <p class="mb-4 text-xs font-bold uppercase tracking-[0.35em] text-blue-400">
+          Project Capsule Beta
+        </p>
+
+        <h1 class="max-w-3xl text-5xl font-black tracking-tight text-white md:text-7xl">
+          A local-first workspace for capturing, organizing, and turning project work into usable records.
+        </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-400">
+          Project Capsule is a beta desktop tool built to help track active builds, document decisions,
+          preserve project context, and reduce the friction between doing the work and documenting it.
+        </p>
+
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a
+            href="/downloads/project-capsule-beta.msi"
+            download
+            class="rounded-full bg-white px-6 py-3 text-sm font-bold text-black hover:bg-zinc-200"
+          >
+            Download Windows Beta
+          </a>
+
+          <a
+            href="/work"
+            class="rounded-full border border-white/15 px-6 py-3 text-sm font-bold text-white hover:bg-white/5"
+          >
+            View Build Work
+          </a>
+        </div>
+
+        <p class="mt-4 text-xs text-zinc-500">
+          Windows beta installer. Early release; expect rough edges.
+        </p>
+      </div>
+
+      <div class="rounded-3xl border border-white/10 bg-zinc-950/80 p-6 shadow-2xl">
+        <div class="rounded-2xl border border-white/10 bg-black p-8">
+          <p class="text-xs font-bold uppercase tracking-[0.3em] text-blue-400">
+            Current Beta Focus
+          </p>
+
+          <div class="mt-6 space-y-4">
+            <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <h2 class="font-bold text-white">Project Capture</h2>
+              <p class="mt-1 text-sm text-zinc-500">Track active builds and notes.</p>
+            </div>
+
+            <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <h2 class="font-bold text-white">Documentation Flow</h2>
+              <p class="mt-1 text-sm text-zinc-500">Turn messy project work into structured records.</p>
+            </div>
+
+            <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4">
+              <h2 class="font-bold text-white">Local Workflow</h2>
+              <p class="mt-1 text-sm text-zinc-500">Built around personal project tracking instead of team bloat.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-24 grid gap-6 md:grid-cols-3">
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="font-bold text-white">Purpose</h2>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Designed for hardware, software, robotics, and automation projects where progress is messy and context is easy to lose.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="font-bold text-white">Current Status</h2>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Beta build. Core workflow is being tested and refined before a full public release.
+        </p>
+      </div>
+
+      <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <h2 class="font-bold text-white">Platform</h2>
+        <p class="mt-3 text-sm leading-7 text-zinc-400">
+          Windows installer for the current beta. More polished distribution can come after the workflow stabilizes.
+        </p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
