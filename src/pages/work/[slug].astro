@@ -13,6 +13,11 @@ export function getStaticPaths() {
 const { project } = Astro.props;
 
 const gallery = project.gallery ?? [];
+const video = project.video ?? null;
+const videoSrc =
+  video?.src?.includes("remote-safe-working")
+    ? "/media/projects/remote-safe/remote-safe-working-web.mp4"
+    : video?.src;
 const stats = project.stats ?? [];
 const profiles = project.profiles ?? [];
 const personalWork = project.sections?.personalWork ?? [];
@@ -282,6 +287,35 @@ const unfinished = project.sections?.unfinished ?? [];
       </section>
     )}
 
+    {video && (
+      <section class="pb-24">
+        <SectionHeader eyebrow="Media" title={video.title ?? "Project Video"} />
+
+        <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+          <div class="aspect-video bg-black">
+            <video
+              controls
+              muted
+              playsinline
+              preload="metadata"
+              poster={video.poster}
+              class="h-full w-full object-contain"
+            >
+              <source src={videoSrc} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          {video.caption && (
+            <div class="border-t border-white/10 p-5">
+              <p class="text-sm leading-6 text-zinc-400">
+                {video.caption}
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+    )}
     {gallery.length > 0 && (
       <section class="pb-24">
         <SectionHeader eyebrow="Evidence" title="Build Gallery" />

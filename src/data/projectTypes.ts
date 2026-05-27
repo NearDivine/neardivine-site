@@ -1,17 +1,14 @@
 export type ProjectGalleryItem = {
   src: string;
-  title: string;
-  caption: string;
+  title?: string;
+  caption?: string;
 };
 
-export type ProjectSections = {
-  built: string;
-  why: string;
-  personalWork: string[];
-  problems: string[];
-  worked: string[];
-  unfinished: string[];
-  learned: string;
+export type ProjectVideo = {
+  src: string;
+  title?: string;
+  caption?: string;
+  poster?: string;
 };
 
 export type Project = {
@@ -20,12 +17,23 @@ export type Project = {
   category: string;
   status: string;
   href: string;
-  image: string;
-  tags: string[];
+  image?: string;
+  tags?: string[];
   summary: string;
-  description: string;
-  stats: string[];
+  description?: string;
+  stats?: string[];
   hardware?: [string, string][];
-  sections?: ProjectSections;
   gallery?: ProjectGalleryItem[];
+  video?: ProjectVideo;
+  sections?: {
+    built?: string;
+    why?: string;
+    personalWork?: string[];
+    problems?: string[];
+    worked?: string[];
+    unfinished?: string[];
+    learned?: string;
+  };
 };
+
+
