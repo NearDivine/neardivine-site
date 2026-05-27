@@ -1,40 +1,102 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import SectionHeader from "../components/SectionHeader.astro";
 import ProjectCard from "../components/ProjectCard.astro";
-import { allProjects, workFocusAreas } from "../data/projects";
+import SectionHeader from "../components/SectionHeader.astro";
+import * as projectData from "../data/projects";
+
+const projectModule = projectData as unknown as {
+  projects?: any[];
+  allProjects?: any[];
+  projectList?: any[];
+  default?: any[];
+};
+
+const projectList =
+  projectModule.projects ??
+  projectModule.allProjects ??
+  projectModule.projectList ??
+  projectModule.default ??
+  [];
+
+const categories = [
+  "Robotics",
+  "Drones",
+  "3D Printing",
+  "Smart Home",
+  "Embedded Hardware",
+  "Software Tools",
+];
+
+const documentationPoints = [
+  {
+    title: "Build context",
+    body: "Each project is written around what was actually built, tested, repaired, or changed.",
+  },
+  {
+    title: "Failure modes",
+    body: "The goal is to show real debugging: wiring problems, wrong assumptions, broken parts, and fixes.",
+  },
+  {
+    title: "Next revisions",
+    body: "Projects include unfinished work and likely next steps instead of pretending every build is final.",
+  },
+];
 ---
 
 <BaseLayout title="Work | NearDivine Labs">
-  <main class="mx-auto max-w-6xl px-6 pt-32">
-    <section class="pb-20">
-      <p class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-zinc-500">
-        Work
-      </p>
+  <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
+    <section class="grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div>
+        <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
+          Work
+        </p>
 
-      <h1 class="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
-        Projects, prototypes, build logs, and technical systems.
-      </h1>
+        <h1 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
+          Projects, prototypes, build logs, and technical systems.
+        </h1>
 
-      <p class="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">
-        A collection of robotics, drones, embedded hardware, automation systems,
-        3D printing work, and software tools.
-      </p>
+        <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-400">
+          A portfolio of robotics, drones, embedded hardware, automation systems, 3D printing,
+          software tools, and repair work documented through real build progress instead of polished
+          summaries only.
+        </p>
 
-      <div class="mt-10 flex max-w-3xl flex-wrap gap-3">
-        {workFocusAreas.map((area) => (
-          <span class="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm font-semibold text-zinc-300">
-            {area}
-          </span>
-        ))}
+        <div class="mt-8 flex flex-wrap gap-3">
+          {categories.map((category) => (
+            <span class="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-zinc-300">
+              {category}
+            </span>
+          ))}
+        </div>
       </div>
+
+      <aside class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
+          Portfolio structure
+        </p>
+
+        <h2 class="mt-3 text-2xl font-semibold tracking-tight text-white">
+          Project records, not just finished demos.
+        </h2>
+
+        <div class="mt-6 grid gap-3">
+          {documentationPoints.map((point) => (
+            <div class="rounded-xl border border-white/10 bg-black/20 p-4">
+              <h3 class="text-sm font-semibold text-white">{point.title}</h3>
+              <p class="mt-2 text-sm leading-6 text-zinc-400">{point.body}</p>
+            </div>
+          ))}
+        </div>
+      </aside>
     </section>
 
-    <section class="pb-24">
+    <section class="pt-16">
       <SectionHeader eyebrow="Selected work" title="Project Index" />
 
-      <div class="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {allProjects.map((project) => <ProjectCard {...project} />)}
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {projectList.map((project) => (
+          <ProjectCard {...project} />
+        ))}
       </div>
     </section>
   </main>
