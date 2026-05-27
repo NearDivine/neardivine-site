@@ -14,3 +14,4 @@ export const smartHomeAutomationLab: Project = {
     "A home automation lab focused on practical smart-home infrastructure, camera-based events, local services, and custom automations.",
   stats: ["Local automation stack", "Camera event logic", "Smart lock and lighting"],
 };
+

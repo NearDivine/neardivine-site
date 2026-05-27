@@ -14,3 +14,4 @@ export const keystoneHomeSystems: Project = {
     "A software and operations system for managing smart-home service workflows, customer intake, automation logic, and documentation.",
   stats: ["Business platform", "Workflow automation", "Service operations"],
 };
+

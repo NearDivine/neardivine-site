@@ -14,3 +14,4 @@ export const slimevrTrackers: Project = {
     "A wearable embedded-systems project combining small electronics, IMU tracking, battery packaging, and custom printed cases.",
   stats: ["8 tracker target", "Custom case design", "ESP32 + IMU hardware"],
 };
+

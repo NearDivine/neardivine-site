@@ -2,7 +2,7 @@ import type { Project } from "../projectTypes";
 
 export const printerRestoration: Project = {
   slug: "3d-printer-restoration",
-  title: "Used 3D Printer Restoration & Interface Upgrade",
+  title: "3D Printer Restoration",
   category: "3D Printing",
   status: "Operational Tooling",
   href: "/work/3d-printer-restoration",
@@ -16,7 +16,7 @@ export const printerRestoration: Project = {
     "Mechanical Tuning",
   ],
   summary:
-    "A used 3D printer restoration project where I repaired and upgraded a cheap printer, then reused a spare Raspberry Pi to improve the control/interface workflow for prototyping.",
+    "A 3D Printer Restoration project where I repaired and upgraded a cheap printer, then reused a spare Raspberry Pi to improve the control/interface workflow for prototyping.",
   description:
     "This project turned a low-cost used 3D printer into a more useful prototyping tool. The focus was repair, tuning, hardware upgrades, and improving the interface/workflow so the printer could support robotics parts, enclosures, and mechanical experiments.",
   stats: [
@@ -68,3 +68,4 @@ export const printerRestoration: Project = {
       "This project showed that restoring a used tool can be more valuable than buying a finished one if the goal is learning and prototyping. The main lesson was that printer reliability is a system problem: mechanical condition, slicer settings, firmware/control workflow, and material behavior all affect the final result.",
   },
 };
+
