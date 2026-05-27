@@ -19,5 +19,96 @@ const {
   <body class="min-h-screen bg-[#08090d] text-white antialiased">
     <Nav />
     <slot />
-  </body>
+    <div
+    id="site-image-lightbox"
+    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+    aria-hidden="true"
+  >
+    <button
+      id="site-image-lightbox-close"
+      type="button"
+      class="absolute right-5 top-5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+      aria-label="Close image preview"
+    >
+      Close
+    </button>
+
+    <div class="flex max-h-[92vh] w-full max-w-7xl flex-col items-center gap-4">
+      <img
+        id="site-image-lightbox-img"
+        src=""
+        alt=""
+        class="max-h-[84vh] max-w-full rounded-xl object-contain shadow-2xl shadow-black/50"
+      />
+
+      <p
+        id="site-image-lightbox-caption"
+        class="max-w-3xl text-center text-sm leading-6 text-zinc-300"
+      ></p>
+    </div>
+  </div>
+
+  <script is:inline>
+    (() => {
+      const lightbox = document.getElementById("site-image-lightbox");
+      const lightboxImg = document.getElementById("site-image-lightbox-img");
+      const caption = document.getElementById("site-image-lightbox-caption");
+      const closeButton = document.getElementById("site-image-lightbox-close");
+
+      if (!lightbox || !lightboxImg || !caption || !closeButton) return;
+
+      const openLightbox = (img) => {
+        const src = img.currentSrc || img.src;
+        const alt = img.alt || "";
+
+        if (!src) return;
+
+        lightboxImg.src = src;
+        lightboxImg.alt = alt;
+        caption.textContent = alt;
+        caption.style.display = alt ? "block" : "none";
+
+        lightbox.classList.remove("hidden");
+        lightbox.classList.add("flex");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      };
+
+      const closeLightbox = () => {
+        lightbox.classList.add("hidden");
+        lightbox.classList.remove("flex");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImg.src = "";
+        document.body.style.overflow = "";
+      };
+
+      document.addEventListener("click", (event) => {
+        const target = event.target;
+
+        if (!(target instanceof HTMLImageElement)) return;
+        if (!target.closest("main")) return;
+        if (target.dataset.noLightbox === "true") return;
+
+        event.preventDefault();
+        event.stopPropagation();
+        openLightbox(target);
+      });
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+
+      closeButton.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeLightbox();
+      });
+
+      document.querySelectorAll("main img").forEach((img) => {
+        if (img.dataset.noLightbox === "true") return;
+        img.classList.add("cursor-zoom-in");
+      });
+    })();
+  </script>
+</body>
 </html>

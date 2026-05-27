@@ -30,28 +30,28 @@ const categories = [
 const documentationPoints = [
   {
     title: "Build context",
-    body: "Each project is written around what was actually built, tested, repaired, or changed.",
+    body: "What was built, tested, repaired, or changed.",
   },
   {
     title: "Failure modes",
-    body: "The goal is to show real debugging: wiring problems, wrong assumptions, broken parts, and fixes.",
+    body: "Wiring issues, wrong assumptions, broken parts, and fixes.",
   },
   {
     title: "Next revisions",
-    body: "Projects include unfinished work and likely next steps instead of pretending every build is final.",
+    body: "Unfinished work and likely next steps.",
   },
 ];
 ---
 
 <BaseLayout title="Work | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
-    <section class="grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+    <section class="grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
       <div>
         <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
           Work
         </p>
 
-        <h1 class="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
+        <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
           Projects, prototypes, build logs, and technical systems.
         </h1>
 
@@ -70,22 +70,51 @@ const documentationPoints = [
         </div>
       </div>
 
-      <aside class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
-          Portfolio structure
-        </p>
+      <aside class="overflow-hidden rounded-[2rem] border border-white/10 bg-[#0b0f17]/80 p-6 shadow-2xl shadow-black/30">
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-blue-300">
+              Portfolio structure
+            </p>
 
-        <h2 class="mt-3 text-2xl font-semibold tracking-tight text-white">
-          Project records, not just finished demos.
-        </h2>
+            <h2 class="mt-3 text-xl font-semibold tracking-tight text-white">
+              Project records, not just finished demos.
+            </h2>
+          </div>
 
-        <div class="mt-6 grid gap-3">
-          {documentationPoints.map((point) => (
-            <div class="rounded-xl border border-white/10 bg-black/20 p-4">
-              <h3 class="text-sm font-semibold text-white">{point.title}</h3>
-              <p class="mt-2 text-sm leading-6 text-zinc-400">{point.body}</p>
-            </div>
-          ))}
+          <span class="shrink-0 rounded-full border border-white/10 px-3 py-1 text-xs font-semibold text-zinc-300">
+            Active
+          </span>
+        </div>
+
+        <div class="mt-6 border-t border-white/10 pt-6">
+          <div class="grid gap-3">
+            {documentationPoints.map((point) => (
+              <div class="rounded-xl border border-white/10 bg-black/30 p-4">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 class="text-sm font-semibold text-white">{point.title}</h3>
+                    <p class="mt-2 text-sm leading-6 text-zinc-400">{point.body}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-5">
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">Focus</p>
+            <p class="mt-1 text-sm font-semibold text-white">Robotics</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">Method</p>
+            <p class="mt-1 text-sm font-semibold text-white">Build logs</p>
+          </div>
+          <div>
+            <p class="text-xs uppercase tracking-[0.25em] text-zinc-500">Scope</p>
+            <p class="mt-1 text-sm font-semibold text-white">Hardware</p>
+          </div>
         </div>
       </aside>
     </section>

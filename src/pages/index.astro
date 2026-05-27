@@ -30,20 +30,27 @@ const getFocusNote = (title: string) =>
     <Nav />
 
     <main class="mx-auto max-w-6xl px-6 pt-32">
-      <section class="grid min-h-[640px] items-center gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+      <section class="grid gap-12 border-b border-white/10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
         <div>
           <p class="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
             NearDivine Labs
           </p>
 
-          <h1 class="max-w-4xl text-4xl font-medium leading-[1.12] tracking-[-0.035em] text-zinc-100 md:text-5xl lg:text-[3.75rem]">
-            Practical engineering projects, documented from prototype to revision.
+          <h1 class="mt-4 max-w-3xl text-4xl font-semibold tracking-tight text-white md:text-5xl">
+            Practical engineering projects documented through real build work.
           </h1>
 
-          <p class="mt-7 max-w-2xl text-base leading-8 text-zinc-400">
-            A technical portfolio covering robotics, drones, embedded hardware, automation,
-            repair work, and the testing process behind each build.
-          </p>
+          <div class="mt-7 max-w-2xl space-y-4 text-base leading-8 text-zinc-400">
+            <p>
+              A technical portfolio covering robotics, drones, embedded hardware, automation,
+              repair work, and the testing process behind each build.
+            </p>
+
+            <p>
+              The focus is practical engineering evidence: wiring, testing, debugging, failed
+              assumptions, working prototypes, and the revisions that move each system forward.
+            </p>
+          </div>
 
           <div class="mt-9 flex flex-wrap gap-4">
             <a
