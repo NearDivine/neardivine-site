@@ -147,5 +147,5 @@ export const media = {
     "aspect-[3/4] overflow-hidden bg-zinc-950",
 
   archiveFrame:
-    "flex min-h-[220px] items-center justify-center overflow-hidden bg-zinc-950",
+    "aspect-[4/3] w-full shrink-0 overflow-hidden bg-zinc-950",
 } as const;

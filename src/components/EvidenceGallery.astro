@@ -4,10 +4,7 @@ import type {
   ProjectImageEvidenceType,
   ProjectImagePhase,
 } from "../data/imageStandards";
-import {
-  imageEvidenceTypeStandards,
-  imageQualityStandards,
-} from "../data/imageStandards";
+import { imageEvidenceTypeStandards } from "../data/imageStandards";
 import { layout, media, surfaces } from "../styles/siteStyles";
 import { typography } from "../styles/typography";
 import SectionHeader from "./SectionHeader.astro";
@@ -44,15 +41,19 @@ const evidenceOrder: ProjectImageEvidenceType[] = [
   "archive",
 ];
 
-const phaseOrder: ProjectImagePhase[] = [
+const phaseOrder = [
+  "ungrouped",
   "concept",
   "v1",
   "v2",
   "rebuild",
   "current",
-];
+] as const;
 
-const phaseLabels: Record<ProjectImagePhase, string> = {
+type GalleryPhaseGroup = (typeof phaseOrder)[number];
+
+const phaseLabels: Record<GalleryPhaseGroup, string> = {
+  ungrouped: "Project Evidence",
   concept: "Concept / Early Direction",
   v1: "V1 / Original Build",
   v2: "V2 / Updated Build",
@@ -60,27 +61,29 @@ const phaseLabels: Record<ProjectImagePhase, string> = {
   current: "Current State",
 };
 
-const phaseDescriptions: Record<ProjectImagePhase, string> = {
+const phaseDescriptions: Record<GalleryPhaseGroup, string> = {
+  ungrouped:
+    "Project photos showing build process, testing, troubleshooting, and historical context.",
   concept:
     "Early reference material kept to show where the project started.",
   v1:
-    "Original build photos showing the first working version, rough process documentation, troubleshooting, and early lessons learned.",
+    "Earlier project photos showing original build context, rough process documentation, troubleshooting, and lessons learned.",
   v2:
-    "Updated build photos showing the improved version with cleaner presentation and better documentation.",
+    "Updated project photos showing a later version, cleanup pass, rebuild, or improved documentation.",
   rebuild:
-    "Rebuild photos showing cleaned-up wiring, improved presentation, and updated documentation standards.",
+    "Rebuild photos showing cleaned-up implementation, improved presentation, and updated documentation standards.",
   current:
     "Current-state photos intended to represent the project as it should appear now.",
 };
 
 const includedTypes = includeTypes ? new Set(includeTypes) : null;
-const includedPhases = includePhases ? new Set(includePhases) : null;
+const includedPhases = includePhases ? new Set<GalleryPhaseGroup>(includePhases) : null;
 
 const getEvidenceType = (image: ProjectGalleryImage): ProjectImageEvidenceType =>
   image.evidenceType ?? "build";
 
-const getPhase = (image: ProjectGalleryImage): ProjectImagePhase =>
-  image.phase ?? "v1";
+const getPhase = (image: ProjectGalleryImage): GalleryPhaseGroup =>
+  image.phase ?? "ungrouped";
 
 const getFrameClass = (image: ProjectGalleryImage) => {
   if (image.variant === "portrait") return media.portraitFrame;
@@ -88,18 +91,8 @@ const getFrameClass = (image: ProjectGalleryImage) => {
   return media.galleryFrame;
 };
 
-const getImageFitClass = (image: ProjectGalleryImage) => {
-  if (image.variant === "archive" || image.quality === "archive") {
-    return "object-contain";
-  }
-
+const getImageFitClass = (_image: ProjectGalleryImage) => {
   return "object-cover";
-};
-
-const getQualityLabel = (image: ProjectGalleryImage) => {
-  if (!image.quality) return null;
-
-  return imageQualityStandards[image.quality]?.label ?? image.quality;
 };
 
 const getEvidenceLabel = (image: ProjectGalleryImage) => {
@@ -163,8 +156,8 @@ const groupedImages =
 
           <div class={layout.cardGrid}>
             {group.images.map((image) => (
-              <figure class={`overflow-hidden ${surfaces.card}`}>
-                <div class={getFrameClass(image)}>
+              <figure class={`flex h-full flex-col overflow-hidden ${surfaces.card}`}>
+                <div class={`${getFrameClass(image)} shrink-0`}>
                   <img
                     src={image.src}
                     alt={image.alt ?? image.title}
@@ -174,28 +167,20 @@ const groupedImages =
                   />
                 </div>
 
-                <div class="p-5">
-                  <div class="flex items-start justify-between gap-3">
-                    <h3 class={typography.galleryTitle}>
-                      {image.title}
-                    </h3>
+                <div class="flex flex-1 flex-col p-5">
+                  <h3 class={typography.galleryTitle}>
+                    {image.title}
+                  </h3>
 
-                    {getQualityLabel(image) && (
-                      <span class={surfaces.smallPill}>
-                        {getQualityLabel(image)}
-                      </span>
-                    )}
-                  </div>
-
-                  <p class={`mt-3 ${typography.caption}`}>
+                  <p class={`mt-2 ${typography.caption}`}>
                     {image.caption}
                   </p>
 
-                  {groupBy === "phase" && image.evidenceType && (
-                    <p class={`mt-4 ${typography.tinyLabel}`}>
+                  <div class="mt-auto pt-5">
+                    <p class={typography.tinyLabel}>
                       {getEvidenceLabel(image)}
                     </p>
-                  )}
+                  </div>
                 </div>
               </figure>
             ))}

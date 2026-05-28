@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import SectionHeader from "../../../components/SectionHeader.astro";
+import EvidenceGallery from "../../../components/EvidenceGallery.astro";
 import { typography } from "../../../styles/typography";
 import { colors, layout, media, surfaces } from "../../../styles/siteStyles";
 import { allProjects } from "../../../data/projects";
@@ -28,27 +29,7 @@ const personalWork = profile.sections?.personalWork ?? [];
 const problems = profile.sections?.problems ?? [];
 const worked = profile.sections?.worked ?? [];
 const unfinished = profile.sections?.unfinished ?? [];
-const getGalleryFrameClass = (variant: string = "gallery") => {
-  const frames: Record<string, string> = {
-    hero: "aspect-video",
-    card: "aspect-[4/3]",
-    gallery: "aspect-[4/3]",
-    technical: "aspect-[4/3]",
-    portrait: "aspect-[3/4]",
-  };
 
-  return frames[variant] ?? frames.gallery;
-};
-
-const getQualityLabel = (quality?: string) => {
-  const labels: Record<string, string> = {
-    portfolio: "Portfolio",
-    process: "Process",
-    archive: "Archive",
-  };
-
-  return quality ? labels[quality] ?? quality : null;
-};
 ---
 
 <BaseLayout title={`${profile.title} | ${project.title} | NearDivine Labs`}>
@@ -210,34 +191,13 @@ const getQualityLabel = (quality?: string) => {
         </section>
       </>
     )}
-
     {gallery.length > 0 && (
-      <section class={layout.sectionBottom}>
-        <SectionHeader eyebrow="Evidence" title="Build Gallery" />
-
-        <div class={layout.cardGrid}>
-          {gallery.map((item) => (
-            <figure class={`overflow-hidden ${surfaces.card}`}>
-              <div class={`${getGalleryFrameClass(item.variant)} overflow-hidden bg-zinc-950`}>
-                <img
-                  src={item.src}
-                  alt={item.alt ?? item.title}
-                  class="h-full w-full object-cover transition duration-300 hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              <figcaption class="p-5">
-                <h3 class={typography.galleryTitle}>{item.title}</h3>
-                <p class="mt-2 text-sm leading-6 text-zinc-400">
-                  {item.caption}
-                </p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
+      <EvidenceGallery
+        images={gallery}
+        eyebrow="Evidence"
+        title="Project Evidence"
+        description="Project photos grouped by build phase so older process documentation and newer standardized photos can coexist without weakening the presentation."
+      />
     )}
 
     <section class={`flex flex-wrap gap-4 ${layout.sectionBottom}`}>

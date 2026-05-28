@@ -26,6 +26,16 @@ for (const file of files) {
   const text = fs.readFileSync(file, "utf8");
   const lines = text.split(/\r?\n/);
 
+  if (
+    file.startsWith("src/pages/work/") &&
+    file.endsWith(".astro") &&
+    (text.includes("gallery.map(") || text.includes('title="Build Gallery"'))
+  ) {
+    failed = true;
+    console.error(`\nStyle validation failed: ${file}`);
+    console.error("Rule: Manual project gallery renderer is not allowed. Use EvidenceGallery.");
+  }
+
   lines.forEach((line, index) => {
     for (const rule of forbiddenPatterns) {
       if (rule.regex.test(line)) {
