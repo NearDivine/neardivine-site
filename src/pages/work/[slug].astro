@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
+import { typography } from "../../styles/typography";
 import { allProjects } from "../../data/projects";
 
 export function getStaticPaths() {
@@ -55,7 +56,7 @@ const getQualityLabel = (quality?: string) => {
           {project.category}
         </p>
 
-        <h1 class="max-w-4xl text-5xl font-black tracking-tight text-white md:text-7xl">
+        <h1 class={typography.pageTitle}>
           {project.title}
         </h1>
 
@@ -134,7 +135,7 @@ const getQualityLabel = (quality?: string) => {
                   />
                 ) : (
                   <div class="flex h-full w-full items-center justify-center px-6 text-center">
-                    <span class="text-[0.6rem] font-bold uppercase tracking-[0.35em] text-blue-300">
+                    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-blue-300">
                       NearDivine Labs
                     </span>
                   </div>
@@ -143,7 +144,7 @@ const getQualityLabel = (quality?: string) => {
 
               <div class="flex min-h-0 flex-1 flex-col p-5">
                 <div class="mb-3 flex items-start justify-between gap-3">
-                  <p class="project-profile-category max-w-[68%] text-[0.62rem] font-black uppercase tracking-[0.22em] text-blue-400">
+                  <p class={`project-profile-category max-w-[68%] text-blue-400 ${typography.tinyLabel}`}>
                     {profile.category}
                   </p>
 
@@ -152,7 +153,7 @@ const getQualityLabel = (quality?: string) => {
                   </span>
                 </div>
 
-                <h3 class="project-profile-title text-lg font-black leading-tight text-white">
+                <h3 class={`project-profile-title ${typography.galleryTitle}`}>
                   {profile.title}
                 </h3>
 
@@ -161,7 +162,7 @@ const getQualityLabel = (quality?: string) => {
                 </p>
 
                 <div class="mt-auto pt-5">
-                  <span class="text-sm font-bold text-blue-300 group-hover:text-blue-200">
+                  <span class={`${typography.actionText} text-blue-300 group-hover:text-blue-200`}>
                     Open profile →
                   </span>
                 </div>
@@ -176,12 +177,12 @@ const getQualityLabel = (quality?: string) => {
       <>
         <section class="grid gap-6 pb-24 md:grid-cols-2">
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <h2 class="text-2xl font-black text-white">What I built</h2>
+            <h2 class={typography.subsectionTitle}>What I built</h2>
             <p class="mt-4 leading-7 text-zinc-400">{project.sections.built}</p>
           </div>
 
           <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <h2 class="text-2xl font-black text-white">Why I built it</h2>
+            <h2 class={typography.subsectionTitle}>Why I built it</h2>
             <p class="mt-4 leading-7 text-zinc-400">{project.sections.why}</p>
           </div>
         </section>
@@ -225,7 +226,7 @@ const getQualityLabel = (quality?: string) => {
 
         <section class="grid items-start gap-6 pb-24 lg:grid-cols-3">
           <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <h2 class="text-2xl font-black text-white">Problems I ran into</h2>
+            <h2 class={typography.subsectionTitle}>Problems I ran into</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
               <div class="space-y-4">
@@ -239,14 +240,14 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class="expand-toggle mt-auto pt-4 text-left text-sm font-bold text-blue-300 hover:text-blue-200"
+              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
             >
               Read more
             </button>
           </article>
 
           <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <h2 class="text-2xl font-black text-white">What worked</h2>
+            <h2 class={typography.subsectionTitle}>What worked</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
               <ul class="space-y-3">
@@ -260,14 +261,14 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class="expand-toggle mt-auto pt-4 text-left text-sm font-bold text-blue-300 hover:text-blue-200"
+              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
             >
               Read more
             </button>
           </article>
 
           <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-            <h2 class="text-2xl font-black text-white">Remaining work</h2>
+            <h2 class={typography.subsectionTitle}>Remaining work</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
               <ul class="space-y-3">
@@ -281,7 +282,7 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class="expand-toggle mt-auto pt-4 text-left text-sm font-bold text-blue-300 hover:text-blue-200"
+              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
             >
               Read more
             </button>
@@ -299,7 +300,7 @@ const getQualityLabel = (quality?: string) => {
     ) : (
       <section class="pb-24">
         <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-          <h2 class="text-2xl font-black text-white">Case study in progress</h2>
+          <h2 class={typography.subsectionTitle}>Case study in progress</h2>
           <p class="mt-4 max-w-3xl leading-7 text-zinc-400">
             This project page is currently a structured placeholder. Full project notes,
             images, hardware details, and build process documentation will be added as the
@@ -356,7 +357,7 @@ const getQualityLabel = (quality?: string) => {
               </div>
 
               <figcaption class="p-5">
-                <h3 class="text-lg font-bold text-white">{item.title}</h3>
+                <h3 class={typography.galleryTitle}>{item.title}</h3>
                 <p class="mt-2 text-sm leading-6 text-zinc-400">
                   {item.caption}
                 </p>
@@ -370,14 +371,14 @@ const getQualityLabel = (quality?: string) => {
     <section class="flex flex-wrap gap-4 pb-24">
       <a
         href="/work"
-        class="rounded-full bg-white px-6 py-3 text-sm font-bold text-black transition hover:bg-blue-100"
+        class={`rounded-full bg-white px-6 py-3 text-black transition hover:bg-blue-100 ${typography.actionText}`}
       >
         Back to work
       </a>
 
       <a
         href="/contact"
-        class="rounded-full border border-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/5"
+        class={`rounded-full border border-white/10 px-6 py-3 text-white transition hover:bg-white/5 ${typography.actionText}`}
       >
         Contact
       </a>

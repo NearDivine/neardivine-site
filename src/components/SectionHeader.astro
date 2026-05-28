@@ -1,15 +1,17 @@
 ---
+import { typography } from "../styles/typography";
+
 const { eyebrow, title } = Astro.props;
 ---
 
 <div class="mb-8">
   {eyebrow && (
-    <p class="mb-2 text-xs font-semibold uppercase tracking-[0.25em] text-blue-400">
+    <p class={`mb-2 ${typography.eyebrow}`}>
       {eyebrow}
     </p>
   )}
 
-  <h2 class="text-3xl font-bold tracking-tight text-white">
+  <h2 class={typography.sectionTitle}>
     {title}
   </h2>
 
