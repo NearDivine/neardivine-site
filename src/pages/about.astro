@@ -1,5 +1,6 @@
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const highlights = [
@@ -20,12 +21,13 @@ const technicalAreas = [
 ];
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="About | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
-    <section class="grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+    <section class={layout.aboutHeroGrid}>
       <div>
-        <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
+        <p class={typography.eyebrowMuted}>
           About me
         </p>
 
@@ -49,17 +51,17 @@ import { typography } from "../styles/typography";
         </div>
       </div>
 
-      <aside class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-        <div class="aspect-square rounded-2xl border border-white/10 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
+      <aside class={`${surfaces.card} p-6`}>
+        <div class={`aspect-square ${media.heroFrame}`}>
           <div class="flex h-full items-center justify-center px-6 text-center">
-            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-blue-300">
+            <p class={typography.eyebrowMuted}>
               Profile image pending
             </p>
           </div>
         </div>
 
-        <div class="mt-6 rounded-2xl border border-white/10 bg-black/20 p-5">
-          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-blue-300">
+        <div class={`mt-6 ${surfaces.stat} p-5`}>
+          <p class={typography.eyebrowMuted}>
             Current direction
           </p>
           <p class="mt-4 text-sm leading-7 text-zinc-400">
@@ -72,7 +74,7 @@ import { typography } from "../styles/typography";
     <section class="pt-16">
       <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
         {highlights.map((item) => (
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-5 text-sm font-medium leading-7 text-zinc-300">
+          <div class={`${surfaces.card} p-5 text-sm font-medium leading-7 text-zinc-300`}>
             {item}
           </div>
         ))}
@@ -80,7 +82,7 @@ import { typography } from "../styles/typography";
     </section>
 
     <section class="pt-20">
-      <p class="text-sm font-medium uppercase tracking-[0.25em] text-blue-300">
+      <p class={typography.eyebrowMuted}>
         Focus
       </p>
 
@@ -90,7 +92,7 @@ import { typography } from "../styles/typography";
 
       <div class="mt-8 flex flex-wrap gap-3">
         {technicalAreas.map((area) => (
-          <span class="rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-zinc-300">
+          <span class={`${surfaces.pill} px-4 py-2 font-semibold text-zinc-300`}>
             {area}
           </span>
         ))}

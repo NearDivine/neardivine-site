@@ -1,14 +1,16 @@
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="Project Capsule | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
     <section class="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
       <div>
-        <p class="text-sm font-medium text-blue-300">Project Capsule</p>
+        <p class={`${typography.actionText} ${colors.accentSoft}`}>Project Capsule</p>
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
           A desktop workspace for organizing project notes, decisions, files, and next actions.
@@ -22,14 +24,14 @@ import { typography } from "../styles/typography";
           <a
             href="/downloads/project-capsule-beta.msi"
             download
-            class="rounded-full bg-blue-500 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-400"
+            class={surfaces.buttonBlue}
           >
             Download Windows Beta
           </a>
 
           <a
             href="/work"
-            class="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5"
+            class={`${surfaces.buttonSecondary} px-5 ${typography.actionText}`}
           >
             View Projects
           </a>
@@ -40,7 +42,7 @@ import { typography } from "../styles/typography";
         </p>
       </div>
 
-      <aside class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+      <aside class={`${surfaces.card} p-6`}>
         <h2 class="text-sm font-semibold uppercase tracking-[0.2em] text-zinc-400">
           Release details
         </h2>
@@ -71,9 +73,9 @@ import { typography } from "../styles/typography";
       </aside>
     </section>
 
-    <section class="mt-20 border-t border-white/10 pt-12">
+    <section class={layout.dividerSection}>
       <div class="mb-8">
-        <p class="text-sm font-medium uppercase tracking-[0.2em] text-blue-300">
+        <p class={typography.eyebrowMuted}>
           Workflow
         </p>
 
@@ -83,7 +85,7 @@ import { typography } from "../styles/typography";
       </div>
 
       <div class="grid gap-6 md:grid-cols-3">
-        <article class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+        <article class={`overflow-hidden ${surfaces.card}`}>
           <img
             src="/images/capsule/capsule-capture.png"
             alt="Project Capsule capture workspace screen"
@@ -102,7 +104,7 @@ import { typography } from "../styles/typography";
           </div>
         </article>
 
-        <article class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+        <article class={`overflow-hidden ${surfaces.card}`}>
           <img
             src="/images/capsule/capsule-context.png"
             alt="Project Capsule project context screen"
@@ -121,7 +123,7 @@ import { typography } from "../styles/typography";
           </div>
         </article>
 
-        <article class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+        <article class={`overflow-hidden ${surfaces.card}`}>
           <img
             src="/images/capsule/capsule-records.png"
             alt="Project Capsule documentation records screen"
@@ -142,7 +144,7 @@ import { typography } from "../styles/typography";
       </div>
     </section>
 
-    <section class="mt-20 rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+    <section class={`mt-20 ${surfaces.card} p-8`}>
       <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
           <h2 class={typography.subsectionTitle}>
@@ -162,10 +164,10 @@ import { typography } from "../styles/typography";
       </div>
     </section>
 
-    <section class="mt-20 border-t border-white/10 pt-12">
+    <section class={layout.dividerSection}>
       <div class="grid gap-8 md:grid-cols-[0.75fr_1.25fr]">
         <div>
-          <p class="text-sm font-medium uppercase tracking-[0.2em] text-blue-300">
+          <p class={typography.eyebrowMuted}>
             Beta notes
           </p>
 

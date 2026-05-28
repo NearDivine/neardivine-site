@@ -1,5 +1,6 @@
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import Nav from "../components/Nav.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 import ProjectCard from "../components/ProjectCard.astro";
@@ -20,6 +21,7 @@ const getFocusNote = (title: string) =>
   focusProjectNotes[title] ?? "Active hardware project with build notes, tests, and revision history.";
 ---
 import { typography } from "../styles/typography";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <html lang="en">
   <head>
@@ -28,13 +30,13 @@ import { typography } from "../styles/typography";
     <title>NearDivine Labs</title>
   </head>
 
-  <body class="min-h-screen bg-[#08090d] text-white antialiased">
+  <body class={`min-h-screen ${colors.pageBackground} text-white antialiased`}>
     <Nav />
 
-    <main class="mx-auto max-w-6xl px-6 pt-32">
-      <section class="grid gap-12 border-b border-white/10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+    <main class={layout.pageShell}>
+      <section class={layout.homeHeroGrid}>
         <div>
-          <p class="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300/80">
+          <p class={`mb-5 ${typography.eyebrowMuted}`}>
             NearDivine Labs
           </p>
 
@@ -64,7 +66,7 @@ import { typography } from "../styles/typography";
 
             <a
               href="/about"
-              class="rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/5"
+              class={`${surfaces.buttonSecondary} px-5 ${typography.actionText}`}
             >
               About
             </a>
@@ -72,10 +74,10 @@ import { typography } from "../styles/typography";
         </div>
 
         <aside class="hidden lg:block">
-          <div class="rounded-3xl border border-white/10 bg-[#0c1018] p-6 shadow-2xl shadow-black/30">
-            <div class="flex items-start justify-between gap-6 border-b border-white/10 pb-5">
+          <div class={surfaces.panelStrong}>
+            <div class={`flex items-start justify-between gap-6 border-b ${colors.border} pb-5`}>
               <div>
-                <p class="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300">
+                <p class={typography.eyebrowMuted}>
                   Engineering Snapshot
                 </p>
 
@@ -84,7 +86,7 @@ import { typography } from "../styles/typography";
                 </h2>
               </div>
 
-              <span class="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs font-medium text-zinc-300">
+              <span class={`${surfaces.pill} text-xs font-medium text-zinc-300`}>
                 Active
               </span>
             </div>
@@ -93,7 +95,7 @@ import { typography } from "../styles/typography";
               {focusProjects.map((project) => (
                 <a
                   href={project.href}
-                  class="block rounded-2xl border border-white/10 bg-black/20 p-5 transition hover:border-blue-400/40 hover:bg-blue-400/[0.04]"
+                  class={`block ${surfaces.cardInteractive} p-5`}
                 >
                   <div class="flex items-start justify-between gap-5">
                     <div>
@@ -106,7 +108,7 @@ import { typography } from "../styles/typography";
                       </p>
                     </div>
 
-                    <span class="shrink-0 rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1 text-xs text-zinc-400">
+                    <span class={`${surfaces.smallPill} shrink-0 text-xs`}>
                       {project.category}
                     </span>
                   </div>
@@ -114,7 +116,7 @@ import { typography } from "../styles/typography";
               ))}
             </div>
 
-            <div class="mt-6 grid gap-4 border-t border-white/10 pt-5 sm:grid-cols-3">
+            <div class={`mt-6 grid gap-4 border-t ${colors.border} pt-5 sm:grid-cols-3`}>
               <div>
                 <p class="text-xs uppercase tracking-[0.18em] text-zinc-500">
                   Focus
@@ -149,20 +151,20 @@ import { typography } from "../styles/typography";
         </aside>
       </section>
 
-      <section class="py-24">
+      <section class={layout.section}>
         <SectionHeader eyebrow="Current focus" title="Active Builds" />
 
-        <div class="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class={layout.cardGrid}>
           {focusProjects.map((project) => (
             <ProjectCard {...project} />
           ))}
         </div>
       </section>
 
-      <section class="py-24">
+      <section class={layout.section}>
         <SectionHeader eyebrow="Recent work" title="Build Logs & Experiments" />
 
-        <div class="grid items-stretch gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class={layout.cardGrid}>
           {recentPreview.map((project) => (
             <ProjectCard {...project} />
           ))}
@@ -171,17 +173,17 @@ import { typography } from "../styles/typography";
         <div class="mt-10 text-center">
           <a
             href="/work"
-            class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-white/5 hover:text-white"
+            class={`inline-flex items-center ${surfaces.buttonSecondary} px-5 text-zinc-300 hover:text-white ${typography.actionText}`}
           >
             See more work
           </a>
         </div>
       </section>
 
-      <section class="py-24">
-        <div class="grid gap-12 border-t border-white/10 pt-20 lg:grid-cols-[1fr_0.42fr] lg:items-start">
+      <section class={layout.section}>
+        <div class={layout.homeAboutGrid}>
           <div>
-            <p class="mb-5 text-xs font-semibold uppercase tracking-[0.32em] text-blue-300">
+            <p class={`mb-5 ${typography.eyebrowMuted}`}>
               About Me
             </p>
 
@@ -209,15 +211,15 @@ import { typography } from "../styles/typography";
             <div class="mt-8">
               <a
                 href="/about"
-                class="inline-flex items-center rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-zinc-300 transition hover:bg-white/5 hover:text-white"
+                class={`inline-flex items-center ${surfaces.buttonSecondary} px-5 text-zinc-300 hover:text-white ${typography.actionText}`}
               >
                 More about me
               </a>
             </div>
           </div>
 
-          <div class="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-4">
-            <div class="aspect-[4/5] overflow-hidden rounded-2xl bg-[#0c1018]">
+          <div class={`overflow-hidden ${surfaces.card} p-4`}>
+            <div class={`aspect-[4/5] overflow-hidden rounded-2xl ${colors.surfaceStrong}`}>
               <img
                 src={profileImage}
                 alt="NearDivine Labs profile"
@@ -226,7 +228,7 @@ import { typography } from "../styles/typography";
               />
 
               <div class="hidden h-full w-full items-center justify-center px-8 text-center">
-                <span class="text-xs font-semibold uppercase tracking-[0.32em] text-blue-300">
+                <span class={typography.eyebrowMuted}>
                   Profile Image Pending
                 </span>
               </div>

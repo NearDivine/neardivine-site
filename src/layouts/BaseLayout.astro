@@ -1,5 +1,5 @@
 ---
-import { colors } from "../styles/siteStyles";
+import { colors, surfaces } from "../styles/siteStyles";
 import Nav from "../components/Nav.astro";
 import "../styles/global.css";
 
@@ -8,7 +8,7 @@ const {
   description = "Robotics, embedded systems, automation, and technical experiments.",
 } = Astro.props;
 ---
-import { colors } from "../styles/siteStyles";
+import { colors, surfaces } from "../styles/siteStyles";
 
 <html lang="en">
   <head>
@@ -23,13 +23,13 @@ import { colors } from "../styles/siteStyles";
     <slot />
     <div
     id="site-image-lightbox"
-    class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-sm"
+    class={surfaces.overlayBackdrop}
     aria-hidden="true"
   >
     <button
       id="site-image-lightbox-close"
       type="button"
-      class="absolute right-5 top-5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+      class={surfaces.overlayCloseButton}
       aria-label="Close image preview"
     >
       Close

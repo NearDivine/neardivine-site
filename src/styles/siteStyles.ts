@@ -29,6 +29,18 @@ export const layout = {
   homeHeroGrid:
     "grid gap-12 border-b border-white/10 pb-16 lg:grid-cols-[1.05fr_0.95fr] lg:items-start",
 
+  homeAboutGrid:
+    "grid gap-12 border-t border-white/10 pt-20 lg:grid-cols-[1fr_0.42fr] lg:items-start",
+
+  aboutHeroGrid:
+    "grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[1.1fr_0.9fr] lg:items-start",
+
+  contactHeroGrid:
+    "grid gap-12 border-b border-white/10 pb-20 lg:grid-cols-[0.95fr_1.05fr] lg:items-end",
+
+  dividerSection:
+    "mt-20 border-t border-white/10 pt-12",
+
   section: "py-24",
   sectionTight: "py-16",
   sectionBottom: "pb-24",
@@ -51,6 +63,15 @@ export const layout = {
 } as const;
 
 export const surfaces = {
+  overlayBackdrop:
+    "fixed inset-0 z-[100] hidden items-center justify-center bg-black/90 p-4 backdrop-blur-sm",
+
+  overlayCloseButton:
+    "absolute right-5 top-5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20",
+
+  expandFade:
+    "pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0b0c10] to-transparent",
+
   navBar:
     "fixed left-0 top-0 z-50 w-full border-b border-white/5 bg-[#08090d]/90 backdrop-blur-xl",
 
@@ -74,6 +95,12 @@ export const surfaces = {
 
   buttonSecondary:
     "rounded-full border border-white/10 px-6 py-3 text-white transition hover:bg-white/5",
+
+  buttonSmallSecondary:
+    "inline-flex w-fit rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/5",
+
+  buttonBlue:
+    "rounded-full bg-blue-500 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-400",
 
   profileCard:
     "rounded-2xl border border-white/10 bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-blue-400/40 hover:bg-white/[0.05]",
