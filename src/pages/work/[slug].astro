@@ -24,6 +24,27 @@ const personalWork = project.sections?.personalWork ?? [];
 const problems = project.sections?.problems ?? [];
 const worked = project.sections?.worked ?? [];
 const unfinished = project.sections?.unfinished ?? [];
+const getGalleryFrameClass = (variant: string = "gallery") => {
+  const frames: Record<string, string> = {
+    hero: "aspect-video",
+    card: "aspect-[4/3]",
+    gallery: "aspect-[4/3]",
+    technical: "aspect-[4/3]",
+    portrait: "aspect-[3/4]",
+  };
+
+  return frames[variant] ?? frames.gallery;
+};
+
+const getQualityLabel = (quality?: string) => {
+  const labels: Record<string, string> = {
+    portfolio: "Portfolio",
+    process: "Process",
+    archive: "Archive",
+  };
+
+  return quality ? labels[quality] ?? quality : null;
+};
 ---
 
 <BaseLayout title={`${project.title} | NearDivine Labs`}>
@@ -102,13 +123,14 @@ const unfinished = project.sections?.unfinished ?? [];
               href={profile.href}
               class="group flex h-[430px] max-w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-blue-400/40 hover:bg-white/[0.05]"
             >
-              <div class="h-40 shrink-0 overflow-hidden border-b border-white/10 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
+              <div class="aspect-[4/3] w-full shrink-0 overflow-hidden border-b border-white/10 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
                 {profile.image ? (
                   <img
                     src={profile.image}
-                    alt={profile.title}
+                    alt={`${profile.title} project profile thumbnail`}
                     class="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                     loading="lazy"
+                    decoding="async"
                   />
                 ) : (
                   <div class="flex h-full w-full items-center justify-center px-6 text-center">
@@ -323,11 +345,13 @@ const unfinished = project.sections?.unfinished ?? [];
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {gallery.map((item) => (
             <figure class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
-              <div class="aspect-video overflow-hidden bg-zinc-950">
+              <div class={`${getGalleryFrameClass(item.variant)} overflow-hidden bg-zinc-950`}>
                 <img
                   src={item.src}
-                  alt={item.title}
+                  alt={item.alt ?? item.title}
                   class="h-full w-full object-cover transition duration-300 hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
 

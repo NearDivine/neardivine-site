@@ -196,39 +196,57 @@ export const roboticSpiderPlatform: Project = {
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-power-bench-overview.jpg",
           title: "V2 power and actuator testbench",
+          alt: "Robotic spider V2 power and actuator testbench with battery, wiring, and motor-control components.",
           caption:
             "Early V2 bench layout for battery power, switching, distribution, motor-driver wiring, and actuator testing before committing to a full leg assembly.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-power-bench-angle.jpg",
           title: "Power-distribution layout",
+          alt: "Angled view of the robotic spider V2 LiPo battery, XT connector, switch, bus bars, and temporary wiring.",
           caption:
             "Angled view of the LiPo battery, XT connector, inline switch, bus-bar distribution, and temporary wiring used to test the power architecture.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-printed-parts-layout.jpg",
           title: "Printed joint components",
+          alt: "3D-printed robotic spider joint parts laid out with a small gearmotor, bearing plate, shaft, and gear pieces.",
           caption:
             "Printed parts, small gearmotor, bearing plate, shaft, and gear pieces laid out during the mechanical packaging stage.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-actuator-leg-assembly.jpg",
           title: "Actuator and joint assembly",
+          alt: "Prototype robotic spider actuator and joint assembly with DC gearmotor, printed mounts, shaft, gears, and bearing support.",
           caption:
             "Prototype actuator/joint assembly using a small DC gearmotor, printed mounts, shaft, gear components, and bearing support.",
-        },
+                  variant: "technical",
+          quality: "portfolio",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-gear-bearing-closeup.jpg",
           title: "Gear and bearing close-up",
+          alt: "Close-up of a printed gear and bearing layout for the robotic spider joint mechanism.",
           caption:
             "Close-up of the printed gear and bearing layout used to evaluate compact joint packaging and mechanical fit.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-bearing-gear-layout.jpg",
           title: "Bearing and gear layout",
+          alt: "Flat layout of the robotic spider bearing plate, gear, motor, and printed joint pieces before assembly.",
           caption:
             "Flat layout showing the bearing plate, gear, motor, and printed leg/joint pieces before full assembly.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
       ],
     },
     {
@@ -294,21 +312,30 @@ export const roboticSpiderPlatform: Project = {
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-depthai-test.jpg",
           title: "DepthAI perception test",
+          alt: "DepthAI stereo and depth output test for the robotic spider perception subsystem.",
           caption:
             "DepthAI stereo/depth output test used to explore future perception capabilities separately from the leg hardware.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-depthai-usb-cooling-fans.jpg",
           title: "DepthAI camera cooling fix",
+          alt: "USB-powered cooling fans added near the DepthAI camera after overheating during perception testing.",
           caption:
             "USB-powered cooling fans built after the DepthAI / OAK-D camera started getting too hot during perception testing.",
-        },
+                  variant: "technical",
+          quality: "portfolio",
+},
         {
           src: "/projects/robotic-spider-platform/v2/spider-v2-perception-bench.jpg",
           title: "Perception and compute bench",
+          alt: "Robotic spider perception and compute bench with camera hardware and supporting electronics.",
           caption:
             "Bench setup combining camera/perception hardware and compute hardware while exploring the future autonomy stack.",
-        },
+                  variant: "technical",
+          quality: "process",
+},
       ],
     },
   ],

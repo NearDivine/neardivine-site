@@ -1,0 +1,45 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  variant?: "hero" | "card" | "gallery" | "technical" | "portrait";
+  priority?: boolean;
+}
+
+const {
+  src,
+  alt,
+  caption,
+  variant = "gallery",
+  priority = false,
+} = Astro.props;
+
+const frameClasses = {
+  hero: "aspect-video rounded-2xl",
+  card: "aspect-[4/3] rounded-xl",
+  gallery: "aspect-[4/3] rounded-xl",
+  technical: "aspect-[4/3] rounded-xl",
+  portrait: "aspect-[3/4] rounded-xl",
+};
+
+const frameClass = frameClasses[variant];
+---
+
+<figure class="space-y-2">
+  <div class={`${frameClass} overflow-hidden border border-white/10 bg-zinc-950`}>
+    <img
+      src={src}
+      alt={alt}
+      class="h-full w-full object-cover"
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+    />
+  </div>
+
+  {caption && (
+    <figcaption class="text-sm leading-relaxed text-zinc-400">
+      {caption}
+    </figcaption>
+  )}
+</figure>
