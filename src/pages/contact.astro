@@ -1,4 +1,5 @@
 ---
+import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
 import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -24,16 +25,12 @@ const links = [
   },
 ];
 ---
-import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="Contact | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
     <section class={layout.contactHeroGrid}>
       <div>
-        <p class={typography.eyebrowMuted}>
-          Contact
-        </p>
+        <PageEyebrow label="Contact" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
           Links, resume, and professional contact.

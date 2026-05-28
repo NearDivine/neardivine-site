@@ -1,4 +1,5 @@
 ---
+import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
 import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import Nav from "../components/Nav.astro";
@@ -20,8 +21,6 @@ const focusProjectNotes: Record<string, string> = {
 const getFocusNote = (title: string) =>
   focusProjectNotes[title] ?? "Active hardware project with build notes, tests, and revision history.";
 ---
-import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <html lang="en">
   <head>
@@ -36,9 +35,7 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
     <main class={layout.pageShell}>
       <section class={layout.homeHeroGrid}>
         <div>
-          <p class={`mb-5 ${typography.eyebrowMuted}`}>
-            NearDivine Labs
-          </p>
+          <PageEyebrow label="NearDivine Labs" class="mb-5" />
 
           <h1 class={`mt-4 ${typography.heroTitle}`}>
             Practical engineering projects documented through real build work.
@@ -77,9 +74,7 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
           <div class={surfaces.panelStrong}>
             <div class={`flex items-start justify-between gap-6 border-b ${colors.border} pb-5`}>
               <div>
-                <p class={typography.eyebrowMuted}>
-                  Engineering Snapshot
-                </p>
+                <PageEyebrow label="Engineering Snapshot" />
 
                 <h2 class={`mt-2 ${typography.cardTitle}`}>
                   Current project work
@@ -183,9 +178,7 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
       <section class={layout.section}>
         <div class={layout.homeAboutGrid}>
           <div>
-            <p class={`mb-5 ${typography.eyebrowMuted}`}>
-              About Me
-            </p>
+            <PageEyebrow label="About Me" class="mb-5" />
 
             <h2 class={typography.featureTitle}>
               I came into robotics through field work, broken hardware, and unfinished prototypes.

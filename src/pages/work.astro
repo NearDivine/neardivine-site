@@ -1,4 +1,5 @@
 ---
+import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
 import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -44,16 +45,12 @@ const documentationPoints = [
   },
 ];
 ---
-import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="Work | NearDivine Labs">
   <main class={`${layout.pageShell} pb-24`}>
     <section class={layout.homeHeroGrid}>
       <div>
-        <p class={typography.eyebrowMuted}>
-          Work
-        </p>
+        <PageEyebrow label="Work" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
           Projects, prototypes, build logs, and technical systems.
@@ -77,9 +74,7 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
       <aside class={`overflow-hidden ${surfaces.panelStrong}`}>
         <div class="flex items-start justify-between gap-4">
           <div>
-            <p class={typography.eyebrowMuted}>
-              Portfolio structure
-            </p>
+            <PageEyebrow label="Portfolio structure" />
 
             <h2 class={`mt-3 ${typography.cardTitle}`}>
               Project records, not just finished demos.

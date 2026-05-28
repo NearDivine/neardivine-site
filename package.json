@@ -7,10 +7,11 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:images && astro build",
+    "build": "npm run validate:images && npm run validate:styles && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "validate:images": "node src/scripts/validate-images.mjs"
+    "validate:images": "node src/scripts/validate-images.mjs",
+    "validate:styles": "node src/scripts/validate-style-standards.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.6",

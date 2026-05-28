@@ -1,0 +1,22 @@
+---
+import { typography } from "../styles/typography";
+
+interface Props {
+  label: string;
+  muted?: boolean;
+  class?: string;
+}
+
+const {
+  label,
+  muted = false,
+  class: extraClass = "",
+} = Astro.props;
+
+const displayLabel = label.toUpperCase();
+const style = muted ? typography.eyebrowMuted : typography.eyebrow;
+---
+
+<p class={`${style} ${extraClass}`}>
+  {displayLabel}
+</p>

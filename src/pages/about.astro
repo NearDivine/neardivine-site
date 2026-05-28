@@ -1,4 +1,5 @@
 ---
+import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
 import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -20,16 +21,12 @@ const technicalAreas = [
   "Technical documentation",
 ];
 ---
-import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="About | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
     <section class={layout.aboutHeroGrid}>
       <div>
-        <p class={typography.eyebrowMuted}>
-          About me
-        </p>
+        <PageEyebrow label="About me" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
           Building toward robotics and autonomous systems through practical hardware work.
@@ -54,16 +51,12 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
       <aside class={`${surfaces.card} p-6`}>
         <div class={`aspect-square ${media.heroFrame}`}>
           <div class="flex h-full items-center justify-center px-6 text-center">
-            <p class={typography.eyebrowMuted}>
-              Profile image pending
-            </p>
+            <PageEyebrow label="Profile image pending" />
           </div>
         </div>
 
         <div class={`mt-6 ${surfaces.stat} p-5`}>
-          <p class={typography.eyebrowMuted}>
-            Current direction
-          </p>
+          <PageEyebrow label="Current direction" />
           <p class="mt-4 text-sm leading-7 text-zinc-400">
             Robotics, autonomy, embedded control, hardware testing, and technical documentation.
           </p>
@@ -82,9 +75,7 @@ import { colors, layout, media, surfaces } from "../styles/siteStyles";
     </section>
 
     <section class="pt-20">
-      <p class={typography.eyebrowMuted}>
-        Focus
-      </p>
+      <PageEyebrow label="Focus" />
 
       <h2 class={`mt-3 ${typography.subsectionTitle}`}>
         Technical areas

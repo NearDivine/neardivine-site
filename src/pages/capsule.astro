@@ -1,16 +1,15 @@
 ---
+import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
 import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
-import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
 
 <BaseLayout title="Project Capsule | NearDivine Labs">
   <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
     <section class="grid gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
       <div>
-        <p class={`${typography.actionText} ${colors.accentSoft}`}>Project Capsule</p>
+        <PageEyebrow label="Project Capsule" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
           A desktop workspace for organizing project notes, decisions, files, and next actions.
