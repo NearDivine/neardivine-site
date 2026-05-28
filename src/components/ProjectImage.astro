@@ -1,4 +1,5 @@
 ---
+import { colors } from "../styles/siteStyles";
 interface Props {
   src: string;
   alt: string;
@@ -25,9 +26,10 @@ const frameClasses = {
 
 const frameClass = frameClasses[variant];
 ---
+import { colors } from "../styles/siteStyles";
 
 <figure class="space-y-2">
-  <div class={`${frameClass} overflow-hidden border border-white/10 bg-zinc-950`}>
+  <div class={`${frameClass} overflow-hidden border ${colors.border} bg-zinc-950`}>
     <img
       src={src}
       alt={alt}

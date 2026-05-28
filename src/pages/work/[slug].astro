@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import { typography } from "../../styles/typography";
+import { colors, layout, media, surfaces } from "../../styles/siteStyles";
 import { allProjects } from "../../data/projects";
 
 export function getStaticPaths() {
@@ -49,10 +50,10 @@ const getQualityLabel = (quality?: string) => {
 ---
 
 <BaseLayout title={`${project.title} | NearDivine Labs`}>
-  <main class="mx-auto max-w-6xl px-6 pt-32">
-    <section class="grid gap-12 pb-20 lg:grid-cols-[1fr_0.8fr] lg:items-start">
+  <main class={layout.pageShell}>
+    <section class={layout.heroGrid}>
       <div>
-        <p class="mb-6 text-xs font-semibold uppercase tracking-[0.35em] text-blue-400">
+        <p class={`mb-6 ${typography.eyebrow}`}>
           {project.category}
         </p>
 
@@ -65,20 +66,20 @@ const getQualityLabel = (quality?: string) => {
         </p>
 
         <div class="mt-8 flex flex-wrap gap-2">
-          <span class="rounded-full bg-blue-500/15 px-3 py-1 text-sm font-semibold text-blue-300">
+          <span class={surfaces.activePill}>
             {project.status}
           </span>
 
           {project.tags?.map((tag) => (
-            <span class="rounded-full border border-white/10 px-3 py-1 text-sm text-zinc-400">
+            <span class={surfaces.pill}>
               {tag}
             </span>
           ))}
         </div>
       </div>
 
-      <div class="overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.04] p-6">
-        <div class="aspect-video overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
+      <div class={`overflow-hidden ${surfaces.panel}`}>
+        <div class={media.heroFrame}>
           {project.image ? (
             <img
               src={project.image}
@@ -87,7 +88,7 @@ const getQualityLabel = (quality?: string) => {
             />
           ) : (
             <div class="flex h-full items-center justify-center px-8 text-center">
-              <span class="text-xs font-semibold uppercase tracking-[0.25em] text-blue-300">
+              <span class={`text-xs ${typography.eyebrow} ${colors.accentSoft}`}>
                 Project Visual Pending
               </span>
             </div>
@@ -97,7 +98,7 @@ const getQualityLabel = (quality?: string) => {
         {stats.length > 0 && (
           <div class="mt-5 grid gap-3">
             {stats.map((stat) => (
-              <div class="rounded-xl border border-white/10 bg-black/20 p-4 text-sm font-semibold text-zinc-300">
+              <div class={surfaces.stat}>
                 {stat}
               </div>
             ))}
@@ -106,7 +107,7 @@ const getQualityLabel = (quality?: string) => {
       </div>
     </section>
 
-    <section class="pb-20">
+    <section class={layout.sectionBottomTight}>
       <SectionHeader eyebrow="Overview" title="Project Summary" />
 
       <p class="max-w-3xl text-lg leading-8 text-zinc-400">
@@ -115,16 +116,16 @@ const getQualityLabel = (quality?: string) => {
     </section>
 
     {profiles.length > 0 && (
-      <section class="pb-24">
+      <section class={layout.sectionBottom}>
         <SectionHeader eyebrow="Project branches" title="Prototype Profiles" />
 
-        <div class="grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class={layout.cardGrid}>
           {profiles.map((profile) => (
             <a
               href={profile.href}
-              class="group flex h-full min-h-[560px] max-w-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition duration-300 hover:-translate-y-1 hover:border-blue-400/40 hover:bg-white/[0.05]"
+              class={`group flex h-full min-h-[560px] max-w-full flex-col overflow-hidden ${surfaces.profileCard}`}
             >
-              <div class="aspect-[4/3] w-full shrink-0 overflow-hidden border-b border-white/10 bg-gradient-to-br from-blue-500/20 via-zinc-900 to-black">
+              <div class={media.cardFrame}>
                 {profile.image ? (
                   <img
                     src={profile.image}
@@ -135,7 +136,7 @@ const getQualityLabel = (quality?: string) => {
                   />
                 ) : (
                   <div class="flex h-full w-full items-center justify-center px-6 text-center">
-                    <span class="text-[0.6rem] font-semibold uppercase tracking-[0.35em] text-blue-300">
+                    <span class={`text-[0.6rem] font-semibold uppercase tracking-[0.35em] ${colors.accentSoft}`}>
                       NearDivine Labs
                     </span>
                   </div>
@@ -144,11 +145,11 @@ const getQualityLabel = (quality?: string) => {
 
               <div class="flex min-h-0 flex-1 flex-col p-5">
                 <div class="mb-3 flex items-start justify-between gap-3">
-                  <p class={`project-profile-category max-w-[68%] text-blue-400 ${typography.tinyLabel}`}>
+                  <p class={`project-profile-category max-w-[68%] ${colors.accent} ${typography.tinyLabel}`}>
                     {profile.category}
                   </p>
 
-                  <span class="shrink-0 rounded-full border border-white/10 px-2.5 py-1 text-[0.62rem] font-semibold text-zinc-400">
+                  <span class={`shrink-0 font-semibold ${surfaces.smallPill}`}>
                     {profile.status}
                   </span>
                 </div>
@@ -162,7 +163,7 @@ const getQualityLabel = (quality?: string) => {
                 </p>
 
                 <div class="mt-auto pt-5">
-                  <span class={`${typography.actionText} text-blue-300 group-hover:text-blue-200`}>
+                  <span class={`${typography.actionText} ${colors.accentSoft} ${surfaces.groupActionHover}`}>
                     Open profile →
                   </span>
                 </div>
@@ -175,28 +176,28 @@ const getQualityLabel = (quality?: string) => {
 
     {project.sections ? (
       <>
-        <section class="grid gap-6 pb-24 md:grid-cols-2">
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <section class={layout.twoColumnGrid}>
+          <div class={`${surfaces.card} p-6`}>
             <h2 class={typography.subsectionTitle}>What I built</h2>
             <p class="mt-4 leading-7 text-zinc-400">{project.sections.built}</p>
           </div>
 
-          <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <div class={`${surfaces.card} p-6`}>
             <h2 class={typography.subsectionTitle}>Why I built it</h2>
             <p class="mt-4 leading-7 text-zinc-400">{project.sections.why}</p>
           </div>
         </section>
 
         {project.hardware && project.hardware.length > 0 && (
-          <section class="pb-24">
+          <section class={layout.sectionBottom}>
             <SectionHeader eyebrow="System" title="Core Hardware" />
 
-            <div class="overflow-hidden rounded-2xl border border-white/10">
+            <div class={`overflow-hidden rounded-2xl border ${colors.border}`}>
               <table class="w-full border-collapse text-left text-sm">
                 <tbody>
                   {project.hardware.map(([subsystem, component]) => (
-                    <tr class="border-b border-white/10 last:border-b-0">
-                      <th class="w-1/3 bg-white/[0.03] px-5 py-4 align-top font-semibold text-zinc-300">
+                    <tr class={`border-b ${colors.border} last:border-b-0`}>
+                      <th class={`w-1/3 ${colors.surface} px-5 py-4 align-top font-semibold text-zinc-300`}>
                         {subsystem}
                       </th>
                       <td class="px-5 py-4 leading-6 text-zinc-400">
@@ -211,12 +212,12 @@ const getQualityLabel = (quality?: string) => {
         )}
 
         {personalWork.length > 0 && (
-          <section class="pb-24">
+          <section class={layout.sectionBottom}>
             <SectionHeader eyebrow="Build process" title="What I Personally Did" />
 
             <div class="grid gap-3 md:grid-cols-2">
               {personalWork.map((item) => (
-                <div class="rounded-xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-6 text-zinc-300">
+                <div class={`${surfaces.card} p-4 text-sm leading-6 text-zinc-300`}>
                   {item}
                 </div>
               ))}
@@ -224,8 +225,8 @@ const getQualityLabel = (quality?: string) => {
           </section>
         )}
 
-        <section class="grid items-start gap-6 pb-24 lg:grid-cols-3">
-          <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+        <section class={layout.threeColumnGrid}>
+          <article class={`expand-card flex min-h-[390px] flex-col ${surfaces.card} p-6`}>
             <h2 class={typography.subsectionTitle}>Problems I ran into</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
@@ -240,13 +241,13 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
+              class={`expand-toggle mt-auto pt-4 text-left ${colors.accentSoft} ${surfaces.actionHover} ${typography.actionText}`}
             >
               Read more
             </button>
           </article>
 
-          <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <article class={`expand-card flex min-h-[390px] flex-col ${surfaces.card} p-6`}>
             <h2 class={typography.subsectionTitle}>What worked</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
@@ -261,13 +262,13 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
+              class={`expand-toggle mt-auto pt-4 text-left ${colors.accentSoft} ${surfaces.actionHover} ${typography.actionText}`}
             >
               Read more
             </button>
           </article>
 
-          <article class="expand-card flex min-h-[390px] flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+          <article class={`expand-card flex min-h-[390px] flex-col ${surfaces.card} p-6`}>
             <h2 class={typography.subsectionTitle}>Remaining work</h2>
 
             <div class="expand-content relative mt-4 overflow-hidden transition-all duration-300" style="max-height: 245px;">
@@ -282,14 +283,14 @@ const getQualityLabel = (quality?: string) => {
 
             <button
               type="button"
-              class={`expand-toggle mt-auto pt-4 text-left text-blue-300 hover:text-blue-200 ${typography.actionText}`}
+              class={`expand-toggle mt-auto pt-4 text-left ${colors.accentSoft} ${surfaces.actionHover} ${typography.actionText}`}
             >
               Read more
             </button>
           </article>
         </section>
 
-        <section class="pb-24">
+        <section class={layout.sectionBottom}>
           <SectionHeader eyebrow="Takeaway" title="What I Learned" />
 
           <p class="max-w-3xl text-lg leading-8 text-zinc-400">
@@ -298,8 +299,8 @@ const getQualityLabel = (quality?: string) => {
         </section>
       </>
     ) : (
-      <section class="pb-24">
-        <div class="rounded-2xl border border-white/10 bg-white/[0.03] p-6">
+      <section class={layout.sectionBottom}>
+        <div class={`${surfaces.card} p-6`}>
           <h2 class={typography.subsectionTitle}>Case study in progress</h2>
           <p class="mt-4 max-w-3xl leading-7 text-zinc-400">
             This project page is currently a structured placeholder. Full project notes,
@@ -311,10 +312,10 @@ const getQualityLabel = (quality?: string) => {
     )}
 
     {video && (
-      <section class="pb-24">
+      <section class={layout.sectionBottom}>
         <SectionHeader eyebrow="Media" title={video.title ?? "Project Video"} />
 
-        <div class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+        <div class={`overflow-hidden ${surfaces.card}`}>
           <div class="aspect-video bg-black">
             <video
               controls
@@ -330,7 +331,7 @@ const getQualityLabel = (quality?: string) => {
           </div>
 
           {video.caption && (
-            <div class="border-t border-white/10 p-5">
+            <div class={`border-t ${colors.border} p-5`}>
               <p class="text-sm leading-6 text-zinc-400">
                 {video.caption}
               </p>
@@ -340,12 +341,12 @@ const getQualityLabel = (quality?: string) => {
       </section>
     )}
     {gallery.length > 0 && (
-      <section class="pb-24">
+      <section class={layout.sectionBottom}>
         <SectionHeader eyebrow="Evidence" title="Build Gallery" />
 
-        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div class={layout.cardGrid}>
           {gallery.map((item) => (
-            <figure class="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03]">
+            <figure class={`overflow-hidden ${surfaces.card}`}>
               <div class={`${getGalleryFrameClass(item.variant)} overflow-hidden bg-zinc-950`}>
                 <img
                   src={item.src}
@@ -368,17 +369,17 @@ const getQualityLabel = (quality?: string) => {
       </section>
     )}
 
-    <section class="flex flex-wrap gap-4 pb-24">
+    <section class={`flex flex-wrap gap-4 ${layout.sectionBottom}`}>
       <a
         href="/work"
-        class={`rounded-full bg-white px-6 py-3 text-black transition hover:bg-blue-100 ${typography.actionText}`}
+        class={`${surfaces.buttonPrimary} ${typography.actionText}`}
       >
         Back to work
       </a>
 
       <a
         href="/contact"
-        class={`rounded-full border border-white/10 px-6 py-3 text-white transition hover:bg-white/5 ${typography.actionText}`}
+        class={`${surfaces.buttonSecondary} ${typography.actionText}`}
       >
         Contact
       </a>

@@ -1,5 +1,6 @@
 ---
 import { typography } from "../styles/typography";
+import { colors } from "../styles/siteStyles";
 
 const { eyebrow, title } = Astro.props;
 ---
@@ -15,5 +16,5 @@ const { eyebrow, title } = Astro.props;
     {title}
   </h2>
 
-  <div class="mt-3 h-1 w-40 rounded-full bg-blue-500"></div>
+  <div class={`mt-3 h-1 w-40 rounded-full ${colors.accentBackground}`}></div>
 </div>
