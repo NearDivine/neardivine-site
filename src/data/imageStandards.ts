@@ -3,12 +3,29 @@ export type ProjectImageVariant =
   | "card"
   | "gallery"
   | "technical"
-  | "portrait";
+  | "portrait"
+  | "archive";
 
 export type ProjectImageQuality =
   | "portfolio"
   | "process"
   | "archive";
+
+export type ProjectImageEvidenceType =
+  | "showcase"
+  | "build"
+  | "test"
+  | "configuration"
+  | "failure"
+  | "repair"
+  | "archive";
+
+export type ProjectImagePhase =
+  | "concept"
+  | "v1"
+  | "v2"
+  | "rebuild"
+  | "current";
 
 export type ProjectImage = {
   src: string;
@@ -17,6 +34,8 @@ export type ProjectImage = {
   caption?: string;
   variant: ProjectImageVariant;
   quality: ProjectImageQuality;
+  evidenceType?: ProjectImageEvidenceType;
+  phase?: ProjectImagePhase;
 };
 
 export const imageVariantStandards: Record<
@@ -32,7 +51,7 @@ export const imageVariantStandards: Record<
     label: "Hero image",
     aspectRatio: "16:9",
     recommendedSize: "1600x900",
-    useCase: "Top image on a project page.",
+    useCase: "Top image on a project page. Should be portfolio-quality.",
   },
   card: {
     label: "Project card thumbnail",
@@ -58,6 +77,12 @@ export const imageVariantStandards: Record<
     recommendedSize: "900x1200",
     useCase: "Vertical phone photos that are still worth showing.",
   },
+  archive: {
+    label: "Archive image",
+    aspectRatio: "Flexible",
+    recommendedSize: "600px+ wide preferred",
+    useCase: "Older rough documentation photos kept for project history and evidence.",
+  },
 };
 
 export const imageQualityStandards: Record<
@@ -77,6 +102,43 @@ export const imageQualityStandards: Record<
   },
   archive: {
     label: "Archive evidence",
-    publicUse: "Historically useful, but rough. Use only in lower-priority sections.",
+    publicUse: "Historically useful, but rough. Use in evidence/archive sections, not hero/card slots.",
+  },
+};
+
+export const imageEvidenceTypeStandards: Record<
+  ProjectImageEvidenceType,
+  {
+    label: string;
+    useCase: string;
+  }
+> = {
+  showcase: {
+    label: "Showcase",
+    useCase: "Clean current-state presentation images.",
+  },
+  build: {
+    label: "Build evidence",
+    useCase: "Assembly, wiring, mechanical layout, or integration proof.",
+  },
+  test: {
+    label: "Test evidence",
+    useCase: "Power-on, validation, bench testing, or field testing.",
+  },
+  configuration: {
+    label: "Configuration evidence",
+    useCase: "Software, firmware, tuning, setup, and system configuration.",
+  },
+  failure: {
+    label: "Failure evidence",
+    useCase: "Problems, constraints, mistakes, blockers, and failure modes.",
+  },
+  repair: {
+    label: "Repair evidence",
+    useCase: "Fixes, rework, temporary repairs, and corrective actions.",
+  },
+  archive: {
+    label: "Archive reference",
+    useCase: "Older rough photos kept for historical context.",
   },
 };

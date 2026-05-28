@@ -78,62 +78,112 @@ export const fpvQuadcopter: Project = {
     {
       src: "/projects/fpv-quadcopter/frame-fc-layout.jpg",
       title: "Frame and flight controller layout",
+      alt: "FPV quadcopter carbon frame with motors, arms, and flight controller positioned during early layout.",
       caption:
         "Early layout stage with the carbon frame, motors, arms, and flight controller positioned before the system was fully closed up.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "build",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/esc-motor-wiring.jpg",
       title: "ESC and motor wiring",
+      alt: "Motor leads soldered to the FPV quadcopter 4-in-1 ESC and routed through the frame.",
       caption:
         "Motor leads soldered to the 4-in-1 ESC and routed through the frame during the main wiring stage.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "build",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/power-path-capacitor.jpg",
       title: "Power path and capacitor",
+      alt: "XT60 power lead and capacitor installed on the FPV quadcopter power path.",
       caption:
         "XT60 power lead and capacitor installed as part of the main battery power path.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "build",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/short-saver-power-test.jpg",
       title: "Short-saver power test",
+      alt: "FPV quadcopter connected through a short saver for first-power safety testing.",
       caption:
         "Safe first-power setup using a short-saver before applying full battery power directly to the build.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "test",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/flight-controller-config.jpg",
       title: "Flight controller configuration stage",
+      alt: "FPV quadcopter flight controller connected over USB for Betaflight configuration.",
       caption:
         "Flight controller installed and connected over USB for Betaflight configuration and bring-up testing.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "configuration",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/receiver-bringup.jpg",
       title: "Receiver bring-up",
+      alt: "ELRS receiver and wiring staged during FPV quadcopter receiver bring-up.",
       caption:
         "ELRS receiver and wiring staged during receiver binding, UART setup, and system integration.",
+      variant: "technical",
+      quality: "process",
+      evidenceType: "configuration",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/workspace-context.jpg",
       title: "Build workspace",
+      alt: "Workbench with the FPV quadcopter, tools, parts, and support hardware during the build.",
       caption:
         "Workbench context showing the drone, tools, parts, and supporting hardware during the build process.",
+      variant: "archive",
+      quality: "archive",
+      evidenceType: "archive",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/tip-contact-comparison.jpg",
       title: "Soldering iron contact issue",
+      alt: "Soldering iron tip contact issue that reduced heat transfer during the FPV drone build.",
       caption:
         "The soldering iron tip was not making reliable thermal contact, which made soldering harder than it should have been.",
+      variant: "technical",
+      quality: "archive",
+      evidenceType: "failure",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/tool-contact-fix.jpg",
       title: "Temporary tool repair",
+      alt: "Temporary crimped contact repair made to restore soldering iron heat transfer.",
       caption:
         "Temporary crimped contact repair used to restore enough heat transfer to continue work while waiting on better equipment.",
+      variant: "technical",
+      quality: "archive",
+      evidenceType: "repair",
+      phase: "v1",
     },
     {
       src: "/projects/fpv-quadcopter/bad-contact-solder-result.jpg",
       title: "Constraint during soldering",
+      alt: "Rough soldering result caused by unreliable soldering iron thermal contact during the FPV drone build.",
       caption:
         "Example of the rougher soldering conditions caused by the tool contact issue. This is planned for rework with better equipment.",
+      variant: "technical",
+      quality: "archive",
+      evidenceType: "failure",
+      phase: "v1",
     },
   ],
 };

@@ -1,5 +1,7 @@
 import type {
   ProjectImageQuality,
+  ProjectImageEvidenceType,
+  ProjectImagePhase,
   ProjectImageVariant,
 } from "./imageStandards";
 
@@ -35,6 +37,18 @@ export type ProjectGalleryImage = {
    * Optional for now so old project data does not break immediately.
    */
   quality?: ProjectImageQuality;
+
+  /**
+   * What role this image plays in the project record.
+   * Used to group photos into showcase, build, test, troubleshooting, and archive sections.
+   */
+  evidenceType?: ProjectImageEvidenceType;
+
+  /**
+   * Project phase this image belongs to.
+   * Useful when old photos and current rebuild photos need to coexist.
+   */
+  phase?: ProjectImagePhase;
 };
 
 export type ProjectVideo = {

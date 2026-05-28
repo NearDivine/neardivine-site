@@ -19,34 +19,48 @@ const standards = {
     ratio: 16 / 9,
     minWidth: 1400,
     minHeight: 780,
+    enforceRatio: true,
   },
   card: {
     name: "Card image",
     ratio: 4 / 3,
     minWidth: 800,
     minHeight: 600,
+    enforceRatio: true,
   },
   gallery: {
     name: "Gallery image",
     ratio: 4 / 3,
     minWidth: 1000,
     minHeight: 750,
+    enforceRatio: true,
   },
   technical: {
     name: "Technical image",
     ratio: 4 / 3,
     minWidth: 1000,
     minHeight: 750,
+    enforceRatio: true,
   },
   portrait: {
     name: "Portrait image",
     ratio: 3 / 4,
     minWidth: 700,
     minHeight: 900,
+    enforceRatio: true,
+  },
+  archive: {
+    name: "Archive image",
+    ratio: null,
+    minWidth: 500,
+    minHeight: 300,
+    enforceRatio: false,
   },
 };
 
+const standardPrefixPattern = /^(hero|card|gallery|technical|portrait|archive)-/;
 const tolerance = 0.04;
+
 let failed = false;
 let checkedStandardImages = 0;
 let allowedLegacyImages = 0;
@@ -56,7 +70,7 @@ const getNormalizedPath = (file) => file.replaceAll("\\", "/");
 
 const getStandardFromFilename = (file) => {
   const filename = getNormalizedPath(file).split("/").at(-1) ?? "";
-  const match = filename.match(/^(hero|card|gallery|technical|portrait)-/);
+  const match = filename.match(standardPrefixPattern);
   return match?.[1] ?? null;
 };
 
@@ -77,7 +91,7 @@ for (const file of files) {
 
     console.error(`\nUnstandardized project image found: ${normalizedFile}`);
     console.error(
-      "New project images must start with one of: hero-, card-, gallery-, technical-, portrait-"
+      "New project images must start with one of: hero-, card-, gallery-, technical-, portrait-, archive-"
     );
     console.error(
       "If this is truly an old legacy image, add it to src/data/legacyProjectImages.json intentionally."
@@ -101,19 +115,27 @@ for (const file of files) {
     continue;
   }
 
-  const actualRatio = width / height;
-  const ratioDelta = Math.abs(actualRatio - rule.ratio);
-
   const tooSmall = width < rule.minWidth || height < rule.minHeight;
-  const wrongRatio = ratioDelta > tolerance;
+
+  let wrongRatio = false;
+  let actualRatio = null;
+
+  if (rule.enforceRatio && rule.ratio) {
+    actualRatio = width / height;
+    const ratioDelta = Math.abs(actualRatio - rule.ratio);
+    wrongRatio = ratioDelta > tolerance;
+  }
 
   if (tooSmall || wrongRatio) {
     console.error(`\nImage failed: ${normalizedFile}`);
     console.error(`Rule: ${rule.name}`);
     console.error(`Actual: ${width}x${height}`);
     console.error(`Required minimum: ${rule.minWidth}x${rule.minHeight}`);
-    console.error(`Expected ratio: ${rule.ratio.toFixed(3)}`);
-    console.error(`Actual ratio: ${actualRatio.toFixed(3)}`);
+
+    if (rule.enforceRatio && rule.ratio && actualRatio) {
+      console.error(`Expected ratio: ${rule.ratio.toFixed(3)}`);
+      console.error(`Actual ratio: ${actualRatio.toFixed(3)}`);
+    }
 
     if (tooSmall) console.error("Problem: image is too small");
     if (wrongRatio) console.error("Problem: image aspect ratio is wrong");

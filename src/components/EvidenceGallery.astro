@@ -1,0 +1,211 @@
+---
+import type { ProjectGalleryImage } from "../data/projectTypes";
+import type {
+  ProjectImageEvidenceType,
+  ProjectImagePhase,
+} from "../data/imageStandards";
+import {
+  imageEvidenceTypeStandards,
+  imageQualityStandards,
+} from "../data/imageStandards";
+import { layout, media, surfaces } from "../styles/siteStyles";
+import { typography } from "../styles/typography";
+import SectionHeader from "./SectionHeader.astro";
+
+interface Props {
+  images?: ProjectGalleryImage[];
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  groupBy?: "phase" | "evidenceType";
+  includeTypes?: ProjectImageEvidenceType[];
+  includePhases?: ProjectImagePhase[];
+  emptyMessage?: string;
+}
+
+const {
+  images = [],
+  eyebrow = "Evidence",
+  title = "Project Evidence",
+  description,
+  groupBy = "phase",
+  includeTypes,
+  includePhases,
+  emptyMessage = "No evidence images added yet.",
+} = Astro.props;
+
+const evidenceOrder: ProjectImageEvidenceType[] = [
+  "showcase",
+  "build",
+  "test",
+  "configuration",
+  "failure",
+  "repair",
+  "archive",
+];
+
+const phaseOrder: ProjectImagePhase[] = [
+  "concept",
+  "v1",
+  "v2",
+  "rebuild",
+  "current",
+];
+
+const phaseLabels: Record<ProjectImagePhase, string> = {
+  concept: "Concept / Early Direction",
+  v1: "V1 / Original Build",
+  v2: "V2 / Updated Build",
+  rebuild: "Rebuild / Current Cleanup",
+  current: "Current State",
+};
+
+const phaseDescriptions: Record<ProjectImagePhase, string> = {
+  concept:
+    "Early reference material kept to show where the project started.",
+  v1:
+    "Original build photos showing the first working version, rough process documentation, troubleshooting, and early lessons learned.",
+  v2:
+    "Updated build photos showing the improved version with cleaner presentation and better documentation.",
+  rebuild:
+    "Rebuild photos showing cleaned-up wiring, improved presentation, and updated documentation standards.",
+  current:
+    "Current-state photos intended to represent the project as it should appear now.",
+};
+
+const includedTypes = includeTypes ? new Set(includeTypes) : null;
+const includedPhases = includePhases ? new Set(includePhases) : null;
+
+const getEvidenceType = (image: ProjectGalleryImage): ProjectImageEvidenceType =>
+  image.evidenceType ?? "build";
+
+const getPhase = (image: ProjectGalleryImage): ProjectImagePhase =>
+  image.phase ?? "v1";
+
+const getFrameClass = (image: ProjectGalleryImage) => {
+  if (image.variant === "portrait") return media.portraitFrame;
+  if (image.variant === "archive" || image.quality === "archive") return media.archiveFrame;
+  return media.galleryFrame;
+};
+
+const getImageFitClass = (image: ProjectGalleryImage) => {
+  if (image.variant === "archive" || image.quality === "archive") {
+    return "object-contain";
+  }
+
+  return "object-cover";
+};
+
+const getQualityLabel = (image: ProjectGalleryImage) => {
+  if (!image.quality) return null;
+
+  return imageQualityStandards[image.quality]?.label ?? image.quality;
+};
+
+const getEvidenceLabel = (image: ProjectGalleryImage) => {
+  const type = getEvidenceType(image);
+
+  return imageEvidenceTypeStandards[type]?.label ?? type;
+};
+
+const visibleImages = images.filter((image) => {
+  const type = getEvidenceType(image);
+  const phase = getPhase(image);
+
+  if (includedTypes && !includedTypes.has(type)) return false;
+  if (includedPhases && !includedPhases.has(phase)) return false;
+
+  return true;
+});
+
+const groupedImages =
+  groupBy === "phase"
+    ? phaseOrder
+        .map((phase) => ({
+          key: phase,
+          label: phaseLabels[phase],
+          useCase: phaseDescriptions[phase],
+          images: visibleImages.filter((image) => getPhase(image) === phase),
+        }))
+        .filter((group) => group.images.length > 0)
+    : evidenceOrder
+        .map((type) => ({
+          key: type,
+          label: imageEvidenceTypeStandards[type].label,
+          useCase: imageEvidenceTypeStandards[type].useCase,
+          images: visibleImages.filter((image) => getEvidenceType(image) === type),
+        }))
+        .filter((group) => group.images.length > 0);
+---
+
+<section class={layout.sectionBottom}>
+  <SectionHeader eyebrow={eyebrow} title={title} />
+
+  {description && (
+    <p class={`${layout.contentMeasure} ${typography.body}`}>
+      {description}
+    </p>
+  )}
+
+  {groupedImages.length > 0 ? (
+    <div class="mt-10 space-y-14">
+      {groupedImages.map((group) => (
+        <section>
+          <div class="mb-5">
+            <p class={typography.eyebrowMuted}>
+              {group.label}
+            </p>
+
+            <p class={`mt-2 ${typography.meta}`}>
+              {group.useCase}
+            </p>
+          </div>
+
+          <div class={layout.cardGrid}>
+            {group.images.map((image) => (
+              <figure class={`overflow-hidden ${surfaces.card}`}>
+                <div class={getFrameClass(image)}>
+                  <img
+                    src={image.src}
+                    alt={image.alt ?? image.title}
+                    class={`h-full w-full ${getImageFitClass(image)}`}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="p-5">
+                  <div class="flex items-start justify-between gap-3">
+                    <h3 class={typography.galleryTitle}>
+                      {image.title}
+                    </h3>
+
+                    {getQualityLabel(image) && (
+                      <span class={surfaces.smallPill}>
+                        {getQualityLabel(image)}
+                      </span>
+                    )}
+                  </div>
+
+                  <p class={`mt-3 ${typography.caption}`}>
+                    {image.caption}
+                  </p>
+
+                  {groupBy === "phase" && image.evidenceType && (
+                    <p class={`mt-4 ${typography.tinyLabel}`}>
+                      {getEvidenceLabel(image)}
+                    </p>
+                  )}
+                </div>
+              </figure>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  ) : (
+    <p class={`${layout.contentMeasure} ${typography.body}`}>
+      {emptyMessage}
+    </p>
+  )}
+</section>
