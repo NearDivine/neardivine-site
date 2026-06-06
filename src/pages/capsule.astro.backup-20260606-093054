@@ -1,7 +1,7 @@
-﻿---
+---
 import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
-import { colors, layout, surfaces } from "../styles/siteStyles";
+import { colors, layout, media, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
@@ -21,18 +21,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <div class="mt-8 flex flex-wrap items-center gap-4">
           <a
-            href="/downloads/projects/project-capsule/v2/Project-Capsule-v2-beta-windows.msi"
+            href="/downloads/project-capsule-beta.msi"
             download
             class={surfaces.buttonBlue}
           >
-            Download V2 Windows Beta
+            Download Windows Beta
           </a>
 
           <a
-            href="#release-archive"
+            href="/work"
             class={`${surfaces.buttonSecondary} px-5 ${typography.actionText}`}
           >
-            Past Releases
+            View Projects
           </a>
         </div>
 
@@ -49,7 +49,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <dl class="mt-6 space-y-5">
           <div>
             <dt class="text-sm text-zinc-500">Status</dt>
-            <dd class="mt-1 text-sm font-medium text-white">V2 beta</dd>
+            <dd class="mt-1 text-sm font-medium text-white">Beta</dd>
           </div>
 
           <div>
@@ -86,8 +86,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="grid gap-6 md:grid-cols-3">
         <article class={`overflow-hidden ${surfaces.card}`}>
           <img
-            src="/images/projects/project-capsule/v1/archive-v1-capsule-capture.png"
-            alt="Project Capsule V2 capture workspace screen"
+            src="/images/capsule/capsule-capture.png"
+            alt="Project Capsule capture workspace screen"
             class="h-48 w-full object-cover"
             loading="lazy"
           />
@@ -105,8 +105,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <article class={`overflow-hidden ${surfaces.card}`}>
           <img
-            src="/images/projects/project-capsule/v1/archive-v1-capsule-context.png"
-            alt="Project Capsule V2 project context screen"
+            src="/images/capsule/capsule-context.png"
+            alt="Project Capsule project context screen"
             class="h-48 w-full object-cover"
             loading="lazy"
           />
@@ -124,8 +124,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
         <article class={`overflow-hidden ${surfaces.card}`}>
           <img
-            src="/images/projects/project-capsule/v1/archive-v1-capsule-records.png"
-            alt="Project Capsule V2 action workspace screen"
+            src="/images/capsule/capsule-records.png"
+            alt="Project Capsule documentation records screen"
             class="h-48 w-full object-cover"
             loading="lazy"
           />
@@ -146,22 +146,18 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section class={`mt-20 ${surfaces.card} p-8`}>
       <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
         <div>
-          <p class={typography.eyebrowMuted}>
-            Version change
-          </p>
-
-          <h2 class={`mt-3 ${typography.subsectionTitle}`}>
-            What changed in V2
+          <h2 class={typography.subsectionTitle}>
+            Why it exists
           </h2>
         </div>
 
         <div class="space-y-5 text-sm leading-7 text-zinc-400">
           <p>
-            V1 proved the basic workflow: capture project sessions, preserve context, and turn loose project work into next actions.
+            Hardware, software, automation, and robotics projects often create a documentation problem: the most useful context is produced while debugging, testing, and making tradeoffs, but that context is easy to lose.
           </p>
 
           <p>
-            V2 focuses on making that workflow more operational. Actions are easier to trace back to their source sessions, source metadata is clearer, and the action board is better suited for cleanup after multiple work sessions.
+            Project Capsule is being built to make that capture process more structured without turning it into a heavy project-management system.
           </p>
         </div>
       </div>
@@ -188,76 +184,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
             Future versions may expand the release flow, documentation export options, project templates, and stronger support for portfolio or case-study generation.
           </p>
         </div>
-      </div>
-    </section>
-
-    <section id="release-archive" class={layout.dividerSection}>
-      <div class="mb-8">
-        <p class={typography.eyebrowMuted}>
-          Release archive
-        </p>
-
-        <h2 class={`mt-3 ${typography.subsectionTitle}`}>
-          Project Capsule downloads
-        </h2>
-
-        <p class="mt-4 max-w-2xl text-sm leading-7 text-zinc-400">
-          V2 is the current beta. V1 is preserved as an earlier archived build to show iteration history without making it compete with the current release.
-        </p>
-      </div>
-
-      <div class="grid gap-6 md:grid-cols-2">
-        <article class={`${surfaces.card} p-6`}>
-          <div class={`mb-5 border-b ${colors.border} pb-5`}>
-            <p class={typography.eyebrowMuted}>
-              Current beta
-            </p>
-
-            <h3 class="mt-2 text-lg font-semibold text-white">
-              Project Capsule V2 Beta
-            </h3>
-          </div>
-
-          <p class="text-sm leading-7 text-zinc-400">
-            Current Windows MSI with source-linked actions, clearer action review, compact source metadata, and a cleaner session-to-action workflow.
-          </p>
-
-          <div class="mt-6">
-            <a
-              href="/downloads/projects/project-capsule/v2/Project-Capsule-v2-beta-windows.msi"
-              download
-              class={surfaces.buttonBlue}
-            >
-              Download V2 Windows Beta
-            </a>
-          </div>
-        </article>
-
-        <article class={`${surfaces.card} p-6`}>
-          <div class={`mb-5 border-b ${colors.border} pb-5`}>
-            <p class={typography.eyebrowMuted}>
-              Archived beta
-            </p>
-
-            <h3 class="mt-2 text-lg font-semibold text-white">
-              Project Capsule V1 Beta
-            </h3>
-          </div>
-
-          <p class="text-sm leading-7 text-zinc-400">
-            First usable beta. Preserved as release history for the earlier capture, context, and records workflow.
-          </p>
-
-          <div class="mt-6">
-            <a
-              href="/downloads/projects/project-capsule/v1/project-capsule-beta.msi"
-              download
-              class={`${surfaces.buttonSecondary} px-5 ${typography.actionText}`}
-            >
-              Download V1 Archive
-            </a>
-          </div>
-        </article>
       </div>
     </section>
   </main>

@@ -1,0 +1,459 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageEyebrow from "../components/PageEyebrow.astro";
+
+const releases = [
+  {
+    version: "V2 Beta",
+    status: "Current beta",
+    date: "June 2026",
+    title: "Project Capsule V2 Beta",
+    description:
+      "Current Windows beta with source-linked actions, clearer action review, compact source metadata, and a cleaner session-to-action workflow.",
+    downloadHref: "/downloads/projects/project-capsule/v2/Project-Capsule-v2-beta-windows.msi",
+    current: true,
+  },
+  {
+    version: "V1 Beta",
+    status: "Archived beta",
+    date: "Earlier beta",
+    title: "Project Capsule V1 Beta",
+    description:
+      "First usable beta that proved the core workflow: capture sessions, preserve project context, and turn project notes into next actions.",
+    downloadHref: "/downloads/projects/project-capsule/v1/project-capsule-beta.msi",
+    current: false,
+  },
+];
+
+const currentRelease = releases[0];
+const archivedReleases = releases.slice(1);
+
+const v2Images = [
+
+];
+
+const v1Images = [
+  { src: "/images/projects/project-capsule/v1/capsule-capture.png", alt: "Project Capsule v1 capsule capture screenshot" },
+  { src: "/images/projects/project-capsule/v1/capsule-context.png", alt: "Project Capsule v1 capsule context screenshot" },
+  { src: "/images/projects/project-capsule/v1/capsule-records.png", alt: "Project Capsule v1 capsule records screenshot" },
+];
+
+const improvements = [
+  {
+    title: "Source-linked actions",
+    body:
+      "Actions are tied back to the session context that created them, so cleanup and review are less detached from the original work.",
+  },
+  {
+    title: "Cleaner action board",
+    body:
+      "The V2 action workflow is built to reduce clutter while still allowing longer next-action text when the project needs more detail.",
+  },
+  {
+    title: "Better source metadata",
+    body:
+      "Session and action context is easier to inspect without digging through older notes manually.",
+  },
+  {
+    title: "More operational workflow",
+    body:
+      "V2 moves the app closer to a working project operating system instead of a loose note dump.",
+  },
+];
+---
+
+<BaseLayout title="Project Capsule | NearDivine Labs">
+  <main class="capsule-page">
+    <section class="hero-section">
+      <PageEyebrow label="Project Capsule" />
+
+      <div class="hero-grid">
+        <div>
+          <p class="release-pill">Current beta · Windows</p>
+          <h1>Project Capsule V2 Beta</h1>
+          <p class="hero-copy">
+            Project Capsule is a local-first project memory and action system built to keep complex projects from turning into scattered notes, lost context, and unclear next steps.
+          </p>
+
+          <div class="hero-actions">
+            {currentRelease.downloadHref ? (
+              <a class="button button-primary" href={currentRelease.downloadHref} download>
+                Download V2 Windows Beta
+              </a>
+            ) : (
+              <span class="button button-disabled">V2 installer missing</span>
+            )}
+
+            <a class="button button-secondary" href="#past-releases">
+              View past releases
+            </a>
+          </div>
+
+          <p class="download-note">
+            Beta software. Windows may show a security warning because this build is not code-signed yet.
+          </p>
+        </div>
+
+        <div class="hero-panel">
+          <p class="panel-label">Current release</p>
+          <h2>{currentRelease.title}</h2>
+          <p>{currentRelease.description}</p>
+
+          <dl class="release-facts">
+            <div>
+              <dt>Status</dt>
+              <dd>{currentRelease.status}</dd>
+            </div>
+            <div>
+              <dt>Version</dt>
+              <dd>{currentRelease.version}</dd>
+            </div>
+            <div>
+              <dt>Platform</dt>
+              <dd>Windows MSI</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="section-heading">
+        <p class="eyebrow-text">Purpose</p>
+        <h2>What Project Capsule is built to handle</h2>
+      </div>
+
+      <div class="purpose-grid">
+        <article>
+          <h3>Project memory</h3>
+          <p>
+            Capture build sessions, decisions, context, failures, and next steps without spreading the project across disconnected notes.
+          </p>
+        </article>
+
+        <article>
+          <h3>Action extraction</h3>
+          <p>
+            Convert messy project work into a clearer next-action stack so progress does not depend on remembering every prior session.
+          </p>
+        </article>
+
+        <article>
+          <h3>Portfolio pipeline</h3>
+          <p>
+            Preserve enough structured project evidence to later turn the work into a clean portfolio case study.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    {v2Images.length > 0 && (
+      <section class="section-block">
+        <div class="section-heading">
+          <p class="eyebrow-text">Current beta screenshots</p>
+          <h2>Capsule V2 interface</h2>
+        </div>
+
+        <div class="screenshot-grid">
+          {v2Images.map((image) => (
+            <figure class="screenshot-card">
+              <img src={image.src} alt={image.alt} loading="lazy" />
+            </figure>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="section-block">
+      <div class="section-heading">
+        <p class="eyebrow-text">Version change</p>
+        <h2>What changed from V1 to V2</h2>
+      </div>
+
+      <div class="improvement-grid">
+        {improvements.map((item) => (
+          <article>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="section-block" id="past-releases">
+      <div class="section-heading">
+        <p class="eyebrow-text">Downloads</p>
+        <h2>Project Capsule releases</h2>
+        <p>
+          V2 is the current beta. V1 is kept as an archived release to show iteration history without making it compete with the current version.
+        </p>
+      </div>
+
+      <div class="release-grid">
+        {releases.map((release) => (
+          <article class={release.current ? "release-card release-card-current" : "release-card"}>
+            <p class="release-status">{release.status}</p>
+            <h3>{release.title}</h3>
+            <p class="release-meta">{release.version} · {release.date}</p>
+            <p>{release.description}</p>
+
+            {release.downloadHref ? (
+              <a class="button button-secondary" href={release.downloadHref} download>
+                {release.current ? "Download current beta" : "Download archived beta"}
+              </a>
+            ) : (
+              <span class="missing-download">No installer archived yet</span>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+
+    {v1Images.length > 0 && (
+      <section class="section-block archive-block">
+        <details>
+          <summary>View archived V1 screenshots</summary>
+
+          <div class="screenshot-grid archived-screenshots">
+            {v1Images.map((image) => (
+              <figure class="screenshot-card">
+                <img src={image.src} alt={image.alt} loading="lazy" />
+              </figure>
+            ))}
+          </div>
+        </details>
+      </section>
+    )}
+  </main>
+</BaseLayout>
+
+<style>
+  .capsule-page {
+    width: min(1120px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding: 4rem 0 5rem;
+  }
+
+  .hero-section,
+  .section-block {
+    margin-bottom: 4rem;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  h1 {
+    max-width: 860px;
+    margin: 0.65rem 0 1rem;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.65rem, 3vw, 2.4rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  h3 {
+    margin: 0 0 0.55rem;
+    font-size: 1rem;
+  }
+
+  p {
+    color: var(--muted-text, #a7adba);
+    line-height: 1.65;
+  }
+
+  .hero-copy {
+    max-width: 720px;
+    font-size: 1.08rem;
+  }
+
+  .release-pill,
+  .eyebrow-text,
+  .panel-label,
+  .release-status {
+    margin: 0 0 0.75rem;
+    color: var(--accent, #88aaff);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 1.5rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    border-radius: 999px;
+    padding: 0.75rem 1rem;
+    font-size: 0.92rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+  }
+
+  .button:hover {
+    transform: translateY(-1px);
+  }
+
+  .button-primary {
+    background: var(--accent, #88aaff);
+    color: #08111f;
+  }
+
+  .button-secondary {
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.14));
+    color: var(--text, #f4f7fb);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .button-disabled {
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.14));
+    color: var(--muted-text, #a7adba);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .download-note {
+    max-width: 620px;
+    margin-top: 1rem;
+    font-size: 0.88rem;
+  }
+
+  .hero-panel,
+  .purpose-grid article,
+  .improvement-grid article,
+  .release-card,
+  .screenshot-card,
+  .archive-block details {
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.12));
+    background: var(--surface, rgba(255, 255, 255, 0.045));
+    border-radius: 22px;
+  }
+
+  .hero-panel {
+    padding: 1.35rem;
+  }
+
+  .release-facts {
+    display: grid;
+    gap: 0.9rem;
+    margin: 1.25rem 0 0;
+  }
+
+  .release-facts div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    border-top: 1px solid var(--border, rgba(255, 255, 255, 0.1));
+    padding-top: 0.75rem;
+  }
+
+  .release-facts dt {
+    color: var(--muted-text, #a7adba);
+    font-size: 0.85rem;
+  }
+
+  .release-facts dd {
+    margin: 0;
+    color: var(--text, #f4f7fb);
+    font-weight: 700;
+    text-align: right;
+  }
+
+  .section-heading {
+    max-width: 760px;
+    margin-bottom: 1.25rem;
+  }
+
+  .purpose-grid,
+  .improvement-grid,
+  .release-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .purpose-grid article,
+  .improvement-grid article,
+  .release-card {
+    padding: 1.2rem;
+  }
+
+  .release-card-current {
+    border-color: var(--accent, #88aaff);
+    background: linear-gradient(180deg, rgba(136, 170, 255, 0.1), rgba(255, 255, 255, 0.04));
+  }
+
+  .release-meta,
+  .missing-download {
+    color: var(--muted-text, #a7adba);
+    font-size: 0.9rem;
+  }
+
+  .release-card .button {
+    margin-top: 0.75rem;
+  }
+
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .screenshot-card {
+    overflow: hidden;
+    margin: 0;
+  }
+
+  .screenshot-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  .archive-block details {
+    padding: 1rem;
+  }
+
+  .archive-block summary {
+    cursor: pointer;
+    color: var(--text, #f4f7fb);
+    font-weight: 700;
+  }
+
+  .archived-screenshots {
+    margin-top: 1rem;
+    opacity: 0.88;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid,
+    .purpose-grid,
+    .improvement-grid,
+    .release-grid,
+    .screenshot-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .capsule-page {
+      padding-top: 2.75rem;
+    }
+  }
+</style>
