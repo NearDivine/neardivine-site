@@ -1,19 +1,24 @@
 ---
 import { layout, surfaces } from "../styles/siteStyles";
+
 const pathname = Astro.url.pathname;
 
 const links = [
   { href: "/", label: "Home" },
   { href: "/work", label: "Work" },
-  { href: "/capsule", label: "Capsule" },
+  {
+    href: "/resume/Tyler_Funk_Resume.pdf",
+    label: "Resume",
+  },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
 
 const isActive = (href: string) =>
   href === "/" ? pathname === "/" : pathname.startsWith(href);
+
+const isResumeLink = (href: string) => href.endsWith(".pdf");
 ---
-import { layout, surfaces } from "../styles/siteStyles";
 
 <nav class={surfaces.navBar}>
   <div class={layout.navShell}>
@@ -25,6 +30,8 @@ import { layout, surfaces } from "../styles/siteStyles";
       {links.map((link) => (
         <a
           href={link.href}
+          target={isResumeLink(link.href) ? "_blank" : undefined}
+          rel={isResumeLink(link.href) ? "noreferrer" : undefined}
           class:list={[
             "rounded-full px-4 py-2 text-sm font-medium transition",
             isActive(link.href)
@@ -38,10 +45,7 @@ import { layout, surfaces } from "../styles/siteStyles";
     </div>
 
     <div class="hidden md:block">
-      <a
-        href="/contact"
-        class={surfaces.navButton}
-      >
+      <a href="/contact" class={surfaces.navButton}>
         Contact
       </a>
     </div>
@@ -55,6 +59,8 @@ import { layout, surfaces } from "../styles/siteStyles";
         {links.map((link) => (
           <a
             href={link.href}
+            target={isResumeLink(link.href) ? "_blank" : undefined}
+            rel={isResumeLink(link.href) ? "noreferrer" : undefined}
             class:list={[
               "block rounded-xl px-4 py-3 text-sm font-semibold transition",
               isActive(link.href)

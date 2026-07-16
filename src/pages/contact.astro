@@ -19,9 +19,9 @@ const links = [
   },
   {
     title: "Resume",
-    description: "Resume link will be added after the current version is finalized.",
-    href: "",
-    label: "Pending",
+    description: "One-page resume focused on robotics systems integration, embedded hardware, and autonomy validation.",
+    href: "/resume/Tyler_Funk_Resume.pdf",
+    label: "Download Resume",
   },
 ];
 ---
@@ -57,8 +57,9 @@ const links = [
             {link.href ? (
               <a
                 href={link.href}
-                target="_blank"
-                rel="noreferrer"
+                target={link.title === "Resume" ? undefined : "_blank"}
+                rel={link.title === "Resume" ? undefined : "noreferrer"}
+                download={link.title === "Resume" ? "Tyler_Funk_Resume.pdf" : undefined}
                 class={`mt-auto ${surfaces.buttonSmallSecondary}`}
               >
                 {link.label}
