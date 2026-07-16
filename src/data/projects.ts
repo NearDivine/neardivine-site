@@ -26,27 +26,27 @@ const projectDisplayMeta: Record<string, ProjectDisplayMeta> = {
   "robotic-spider-platform": {
     category: "Robotics",
     homeSection: "focus",
-    order: 10,
+    order: 30,
   },
   "fpv-quadcopter": {
     category: "Drones",
     homeSection: "focus",
-    order: 20,
+    order: 40,
   },
   "3d-printer-restoration": {
     category: "3D Printing",
     homeSection: "focus",
-    order: 30,
+    order: 50,
   },
   "remote-safe": {
     category: "Embedded Hardware",
     homeSection: "recent",
-    order: 40,
+    order: 20,
   },
   "slimevr-trackers": {
     category: "Wearable Hardware",
     homeSection: "recent",
-    order: 50,
+    order: 10,
   },
   "smart-home-automation-lab": {
     category: "Smart Home",
@@ -104,12 +104,12 @@ export const recentLogs = allProjects.filter(
 );
 
 export const workFocusAreas = [
-  "Robotics",
-  "Drones",
-  "3D Printing",
-  "Smart Home",
+  "Autonomy Validation",
+  "Systems Integration",
   "Embedded Hardware",
-  "Software Tools",
+  "Robotics",
+  "Hardware Test",
+  "Networking",
 ];
 
 export type { Project };
