@@ -1,5 +1,6 @@
 import type { Project } from "./projectTypes";
 
+import { autonomousVehicleSensorValidation } from "./projects/autonomous-vehicle-sensor-validation";
 import { fpvQuadcopter } from "./projects/fpv-quadcopter";
 import { roboticSpiderPlatform } from "./projects/robotic-spider-platform";
 import { slimevrTrackers } from "./projects/slimevr-trackers";
@@ -17,6 +18,11 @@ type ProjectDisplayMeta = {
 };
 
 const projectDisplayMeta: Record<string, ProjectDisplayMeta> = {
+  "autonomous-vehicle-sensor-validation": {
+    category: "Autonomy Validation",
+    homeSection: "none",
+    order: 5,
+  },
   "robotic-spider-platform": {
     category: "Robotics",
     homeSection: "focus",
@@ -55,6 +61,7 @@ const projectDisplayMeta: Record<string, ProjectDisplayMeta> = {
 };
 
 const baseProjects: Project[] = [
+  autonomousVehicleSensorValidation,
   roboticSpiderPlatform,
   fpvQuadcopter,
   printerRestoration,

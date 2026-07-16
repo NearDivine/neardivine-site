@@ -60,21 +60,15 @@ const unfinished = project.sections?.unfinished ?? [];
       </div>
 
       <div class={`overflow-hidden ${surfaces.panel}`}>
-        <div class={media.heroFrame}>
-          {project.image ? (
+        {project.image && (
+          <div class={media.heroFrame}>
             <img
               src={project.image}
               alt={project.title}
               class="h-full w-full object-cover"
             />
-          ) : (
-            <div class="flex h-full items-center justify-center px-8 text-center">
-              <span class={`text-xs ${typography.eyebrow} ${colors.accentSoft}`}>
-                Project Visual Pending
-              </span>
-            </div>
-          )}
-        </div>
+          </div>
+        )}
 
         {stats.length > 0 && (
           <div class="mt-5 grid gap-3">
