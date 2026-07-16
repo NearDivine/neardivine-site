@@ -11,15 +11,23 @@ import "../styles/global.css";
 const recentPreview = recentLogs.slice(0, 6);
 const profileImage = "/images/profile/profile.jpg";
 
-const focusProjectNotes: Record<string, string> = {
-  "Robotic Spider Platform": "Legged robotics, actuator packaging, control experiments, and staged prototype revisions.",
-  "Custom FPV Quadcopter": "Flight-controller wiring, ELRS setup, Betaflight configuration, and hardware bring-up.",
-  "Used 3D Printer Restoration & Interface Upgrade":
-    "Printer repair, tuning, interface cleanup, and practical tooling for future hardware work.",
-};
-
-const getFocusNote = (title: string) =>
-  focusProjectNotes[title] ?? "Active hardware project with build notes, tests, and revision history.";
+const professionalHighlights = [
+  {
+    title: "Autonomous-Vehicle Validation",
+    note: "Sensor testing, repeatable environmental validation, system troubleshooting, and test-infrastructure recovery at Glydways.",
+    tag: "Glydways",
+  },
+  {
+    title: "Electrical & Mechanical Diagnostics",
+    note: "Generator systems, field power distribution, schematics, preventive maintenance, and independent fault isolation.",
+    tag: "USMC",
+  },
+  {
+    title: "Embedded Hardware Prototyping",
+    note: "ESP32 and STM32 development, sensor integration, actuator control, DC power, Linux compute, and networked devices.",
+    tag: "Projects",
+  },
+];
 ---
 
 <html lang="en">
@@ -38,16 +46,16 @@ const getFocusNote = (title: string) =>
           <PageEyebrow label="NearDivine Labs" class="mb-5" />
 
           <h1 class={`mt-4 ${typography.heroTitle}`}>
-            Robotics, embedded hardware, and autonomy projects built through testing, debugging, and iteration.
+            Robotics systems integration and embedded hardware.
           </h1>
 
           <div class="mt-7 max-w-2xl space-y-4 text-base leading-8 text-zinc-400">
             <p>
-              A technical portfolio covering robotics, drones, embedded systems, automation, repair work, and autonomous systems testing.
+              I build, troubleshoot, and validate electromechanical systems spanning sensors, embedded electronics, Linux compute, Ethernet networking, DC power, and physical test infrastructure.
             </p>
 
             <p>
-              The site focuses on engineering evidence: wiring, bring-up, test notes, failure analysis, working prototypes, and the revisions that moved each system closer to working.
+              My background combines autonomous-vehicle testing at Glydways, Marine Corps electrical and mechanical diagnostics, and independently built embedded systems.
             </p>
           </div>
 
@@ -73,40 +81,37 @@ const getFocusNote = (title: string) =>
           <div class={surfaces.panelStrong}>
             <div class={`flex items-start justify-between gap-6 border-b ${colors.border} pb-5`}>
               <div>
-                <PageEyebrow label="Engineering Snapshot" />
+                <PageEyebrow label="Professional Snapshot" />
 
                 <h2 class={`mt-2 ${typography.cardTitle}`}>
-                  Current project work
+                  Systems experience
                 </h2>
               </div>
 
               <span class={`${surfaces.pill} text-xs font-medium text-zinc-300`}>
-                Active
+                Current
               </span>
             </div>
 
             <div class="mt-6 space-y-3">
-              {focusProjects.map((project) => (
-                <a
-                  href={project.href}
-                  class={`block ${surfaces.cardInteractive} p-5`}
-                >
+              {professionalHighlights.map((item) => (
+                <div class={`${surfaces.card} p-5`}>
                   <div class="flex items-start justify-between gap-5">
                     <div>
                       <h3 class="text-base font-semibold leading-snug text-white">
-                        {project.title}
+                        {item.title}
                       </h3>
 
                       <p class="mt-2 text-sm leading-6 text-zinc-400">
-                        {getFocusNote(project.title)}
+                        {item.note}
                       </p>
                     </div>
 
                     <span class={`${surfaces.smallPill} shrink-0 text-xs`}>
-                      {project.category}
+                      {item.tag}
                     </span>
                   </div>
-                </a>
+                </div>
               ))}
             </div>
 
@@ -117,7 +122,7 @@ const getFocusNote = (title: string) =>
                 </p>
 
                 <p class="mt-1 text-sm font-medium text-white">
-                  Robotics
+                  Integration
                 </p>
               </div>
 
@@ -127,7 +132,7 @@ const getFocusNote = (title: string) =>
                 </p>
 
                 <p class="mt-1 text-sm font-medium text-white">
-                  Build logs
+                  Diagnose + validate
                 </p>
               </div>
 
@@ -137,12 +142,110 @@ const getFocusNote = (title: string) =>
                 </p>
 
                 <p class="mt-1 text-sm font-medium text-white">
-                  Hardware
+                  Hardware + systems
                 </p>
               </div>
             </div>
           </div>
         </aside>
+      </section>
+
+      <section class={layout.section}>
+        <SectionHeader eyebrow="Professional work" title="Experience" />
+
+        <div class="grid gap-6 lg:grid-cols-2">
+          <article class={`${surfaces.card} p-7`}>
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p class={`text-sm font-semibold uppercase tracking-[0.16em] ${colors.accentSoft}`}>
+                  Glydways
+                </p>
+
+                <h3 class="mt-2 text-xl font-semibold text-white">
+                  Field Test Specialist
+                </h3>
+              </div>
+
+              <span class={surfaces.smallPill}>
+                Oct 2025–Present
+              </span>
+            </div>
+
+            <p class="mt-5 text-sm leading-7 text-zinc-400">
+              Autonomous-vehicle testing and systems validation spanning sensors,
+              DC power, Linux compute, Ethernet networking, data logging, fluid
+              systems, and physical test infrastructure.
+            </p>
+
+            <ul class="mt-5 space-y-3 text-sm leading-7 text-zinc-300">
+              <li>
+                Recovered and developed an initial rain-simulation capability for
+                autonomous-vehicle sensor-cleaning validation.
+              </li>
+
+              <li>
+                Diagnosed faults across power, networking, remote access, thermal
+                management, plumbing, and camera and LiDAR logging.
+              </li>
+
+              <li>
+                Established repeatable test positioning and documentation, then
+                executed validation using the formalized engineering test cart.
+              </li>
+            </ul>
+          </article>
+
+          <article class={`${surfaces.card} p-7`}>
+            <div class="flex flex-wrap items-start justify-between gap-4">
+              <div>
+                <p class={`text-sm font-semibold uppercase tracking-[0.16em] ${colors.accentSoft}`}>
+                  United States Marine Corps
+                </p>
+
+                <h3 class="mt-2 text-xl font-semibold text-white">
+                  Generator Mechanic
+                </h3>
+              </div>
+
+              <span class={surfaces.smallPill}>
+                2022–Jan 2026
+              </span>
+            </div>
+
+            <p class="mt-5 text-sm leading-7 text-zinc-400">
+              Electrical and mechanical diagnostics, maintenance, and repair for
+              generator systems, field power distribution, and associated
+              electromechanical equipment.
+            </p>
+
+            <ul class="mt-5 space-y-3 text-sm leading-7 text-zinc-300">
+              <li>
+                Traced circuits using schematics, wiring diagrams, and electrical
+                test equipment.
+              </li>
+
+              <li>
+                Maintained generator systems and parallel power configurations
+                under field and facility constraints.
+              </li>
+
+              <li>
+                Completed independent fault isolation while maintaining safety,
+                documentation, and mission-readiness requirements.
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="mt-8">
+          <a
+            href="/resume/Tyler_Funk_Resume.pdf"
+            download="Tyler_Funk_Resume.pdf"
+            class={`inline-flex items-center ${surfaces.buttonSecondary} px-5 text-zinc-300 hover:text-white ${typography.actionText}`}
+          >
+            Download full resume
+          </a>
+        </div>
       </section>
 
       <section class={layout.section}>
