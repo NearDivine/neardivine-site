@@ -6,6 +6,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const links = [
   {
+    title: "Email",
+    description: "thetylerfunk@gmail.com - direct contact for roles and professional conversations.",
+    href: "mailto:thetylerfunk@gmail.com",
+    label: "Send Email",
+  },
+  {
     title: "GitHub",
     description: "Project repositories, site code, and technical experiments.",
     href: "https://github.com/NearDivine",
@@ -74,7 +80,7 @@ const links = [
     </section>
 
     <section class="pt-16">
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
         {links.map((link) => (
           <article class={`flex min-h-[220px] flex-col ${surfaces.card} p-6`}>
             <div>
@@ -89,8 +95,8 @@ const links = [
 
             <a
               href={link.href}
-              target={link.title === "Resume" ? undefined : "_blank"}
-              rel={link.title === "Resume" ? undefined : "noreferrer"}
+              target={link.title === "Email" || link.title === "Resume" ? undefined : "_blank"}
+              rel={link.title === "Email" || link.title === "Resume" ? undefined : "noreferrer"}
               download={link.title === "Resume" ? "Tyler_Funk_Resume.pdf" : undefined}
               class={`mt-auto ${surfaces.buttonSmallSecondary}`}
             >
