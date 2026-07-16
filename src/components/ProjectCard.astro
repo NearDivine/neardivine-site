@@ -19,14 +19,10 @@ const hiddenTagCount = Math.max(tags.length - visibleTags.length, 0);
 
 <a
   href={href}
-  class:list={[
-    "group flex h-full flex-col overflow-hidden",
-    image ? "min-h-[500px]" : "min-h-[320px]",
-    surfaces.cardInteractive,
-  ]}
+  class={`group flex h-full min-h-[500px] flex-col overflow-hidden ${surfaces.cardInteractive}`}
 >
-  {image && (
-    <div class={media.cardFrame}>
+  <div class={media.cardFrame}>
+    {image ? (
       <img
         src={image}
         alt={`${title} project thumbnail`}
@@ -34,8 +30,24 @@ const hiddenTagCount = Math.max(tags.length - visibleTags.length, 0);
         loading="lazy"
         decoding="async"
       />
-    </div>
-  )}
+    ) : (
+      <div class={`flex h-full w-full items-center justify-center px-8 text-center ${colors.surfaceStrong}`}>
+        <div>
+          <p class={`${typography.tinyLabel} ${colors.accent}`}>
+            {category}
+          </p>
+
+          <p class="mt-4 text-base font-semibold text-white">
+            Project documentation
+          </p>
+
+          <p class="mt-2 text-sm leading-6 text-zinc-500">
+            Photos will be added soon.
+          </p>
+        </div>
+      </div>
+    )}
+  </div>
 
   <div class="flex flex-1 flex-col p-5">
     <div class="mb-4 flex min-h-[28px] items-start justify-between gap-3">

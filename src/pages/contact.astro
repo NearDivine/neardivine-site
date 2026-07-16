@@ -1,7 +1,7 @@
 ---
 import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
+import { layout, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const links = [
@@ -26,21 +26,51 @@ const links = [
 ];
 ---
 
-<BaseLayout title="Contact | NearDivine Labs">
-  <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
-    <section class={layout.contactHeroGrid}>
+<BaseLayout
+  title="Contact | NearDivine Labs"
+  description="Contact Tyler Funk about robotics systems integration, hardware testing, embedded systems, and autonomy validation."
+>
+  <main class={`${layout.pageShell} pb-24`}>
+    <section class={layout.homeHeroGrid}>
       <div>
         <PageEyebrow label="Contact" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
-          Links, resume, and professional contact.
+          Connect about robotics systems, hardware integration, or autonomy validation.
         </h1>
+
+        <p class="mt-6 max-w-2xl text-base leading-8 text-zinc-400">
+          The portfolio documents my technical work in detail. GitHub,
+          LinkedIn, and the resume provide supporting project and professional
+          context.
+        </p>
       </div>
 
-      <p class="max-w-2xl text-base leading-8 text-zinc-400">
-        This page collects the main places to review my work, background, and project history.
-        The site itself is the primary portfolio; GitHub and LinkedIn provide supporting context.
-      </p>
+      <aside class={surfaces.panelStrong}>
+        <PageEyebrow label="Professional focus" />
+
+        <h2 class={`mt-3 ${typography.cardTitle}`}>
+          Roles involving integrated physical systems.
+        </h2>
+
+        <div class="mt-6 grid gap-3">
+          <div class={surfaces.stat}>
+            Robotics systems integration
+          </div>
+
+          <div class={surfaces.stat}>
+            Hardware integration and test
+          </div>
+
+          <div class={surfaces.stat}>
+            Autonomy and vehicle validation
+          </div>
+
+          <div class={surfaces.stat}>
+            Embedded and electromechanical systems
+          </div>
+        </div>
+      </aside>
     </section>
 
     <section class="pt-16">
@@ -48,27 +78,24 @@ const links = [
         {links.map((link) => (
           <article class={`flex min-h-[220px] flex-col ${surfaces.card} p-6`}>
             <div>
-              <h2 class="text-xl font-semibold text-white">{link.title}</h2>
+              <h2 class="text-xl font-semibold text-white">
+                {link.title}
+              </h2>
+
               <p class="mt-4 text-sm leading-7 text-zinc-400">
                 {link.description}
               </p>
             </div>
 
-            {link.href ? (
-              <a
-                href={link.href}
-                target={link.title === "Resume" ? undefined : "_blank"}
-                rel={link.title === "Resume" ? undefined : "noreferrer"}
-                download={link.title === "Resume" ? "Tyler_Funk_Resume.pdf" : undefined}
-                class={`mt-auto ${surfaces.buttonSmallSecondary}`}
-              >
-                {link.label}
-              </a>
-            ) : (
-              <span class={`mt-auto ${surfaces.buttonSmallSecondary} text-zinc-500`}>
-                {link.label}
-              </span>
-            )}
+            <a
+              href={link.href}
+              target={link.title === "Resume" ? undefined : "_blank"}
+              rel={link.title === "Resume" ? undefined : "noreferrer"}
+              download={link.title === "Resume" ? "Tyler_Funk_Resume.pdf" : undefined}
+              class={`mt-auto ${surfaces.buttonSmallSecondary}`}
+            >
+              {link.label}
+            </a>
           </article>
         ))}
       </div>

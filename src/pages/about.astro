@@ -1,60 +1,94 @@
 ---
 import PageEyebrow from "../components/PageEyebrow.astro";
 import { typography } from "../styles/typography";
-import { colors, layout, media, surfaces } from "../styles/siteStyles";
+import { layout, surfaces } from "../styles/siteStyles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 
 const highlights = [
-  "Marine Corps mechanical, electrical, and power-systems troubleshooting background.",
-  "Autonomous vehicle testing experience through Glydways / SkillBridge.",
-  "Hands-on robotics, FPV drone, embedded hardware, 3D printing, and automation builds.",
-  "Self-directed technical learning centered on systems that can be built, tested, and revised.",
+  "Marine Corps electrical, mechanical, and field-power diagnostics.",
+  "Autonomous-vehicle testing and systems validation at Glydways.",
+  "Independent embedded hardware, robotics, sensor, and actuator projects.",
+  "Technical documentation centered on failures, fixes, tests, and revisions.",
 ];
 
 const technicalAreas = [
-  "Robotics",
+  "Systems integration",
+  "Autonomy validation",
   "Embedded hardware",
-  "Autonomous systems testing",
-  "FPV drones",
-  "3D printing",
-  "Smart home automation",
-  "Technical documentation",
+  "Electrical diagnostics",
+  "Linux compute",
+  "Ethernet networking",
+  "Hardware test",
 ];
 ---
 
-<BaseLayout title="About | NearDivine Labs">
-  <main class="mx-auto max-w-6xl px-6 pb-24 pt-32">
-    <section class={layout.aboutHeroGrid}>
+<BaseLayout
+  title="About | NearDivine Labs"
+  description="Background in robotics systems integration, autonomous-vehicle validation, embedded hardware, and electromechanical troubleshooting."
+>
+  <main class={`${layout.pageShell} pb-24`}>
+    <section class={layout.homeHeroGrid}>
       <div>
         <PageEyebrow label="About me" />
 
         <h1 class={`mt-4 ${typography.pageTitle}`}>
-          From Marine Corps troubleshooting to robotics, autonomy, and embedded hardware.
+          Systems troubleshooting shaped how I approach robotics and autonomy.
         </h1>
 
         <div class="mt-8 max-w-3xl space-y-6 text-base leading-8 text-zinc-400">
           <p>
-            My background started with mechanical and electrical troubleshooting in the Marine Corps and moved into autonomous vehicle testing through Glydways / SkillBridge. This site documents the transition into robotics, embedded hardware, FPV drones, 3D printing, and automation.
+            My technical background began with generator systems, electrical
+            diagnostics, mechanical repair, and field-power distribution in the
+            Marine Corps. I now apply that troubleshooting foundation to
+            autonomous-vehicle testing and systems validation at Glydways.
           </p>
 
           <p>
-            NearDivine Labs is written as evidence, not polish. Projects include prototypes, wiring, failures, debug notes, repairs, upgrades, and test results so the work can be judged from what was actually built.
+            Across professional work and independent projects, I focus on the
+            interfaces where systems usually fail: power, wiring, networking,
+            sensors, compute, actuators, mechanical packaging, test setup, and
+            operating procedure.
           </p>
         </div>
       </div>
 
-      <aside class={`${surfaces.card} p-6`}>
-        <div class={`aspect-square ${media.heroFrame}`}>
-          <div class="flex h-full items-center justify-center px-6 text-center">
-            <PageEyebrow label="Profile image pending" />
-          </div>
-        </div>
+      <aside class={surfaces.panelStrong}>
+        <PageEyebrow label="Professional direction" />
 
-        <div class={`mt-6 ${surfaces.stat} p-5`}>
-          <PageEyebrow label="Current direction" />
-          <p class="mt-4 text-sm leading-7 text-zinc-400">
-            Robotics, embedded hardware, autonomous systems testing, control bring-up, and technical documentation.
-          </p>
+        <h2 class={`mt-3 ${typography.cardTitle}`}>
+          Robotics systems integration and hardware validation.
+        </h2>
+
+        <div class="mt-6 grid gap-3">
+          <div class={surfaces.stat}>
+            <p class="text-xs uppercase tracking-[0.2em] text-zinc-500">
+              Current work
+            </p>
+
+            <p class="mt-2 text-sm font-semibold text-white">
+              Autonomous-vehicle field testing
+            </p>
+          </div>
+
+          <div class={surfaces.stat}>
+            <p class="text-xs uppercase tracking-[0.2em] text-zinc-500">
+              Core method
+            </p>
+
+            <p class="mt-2 text-sm font-semibold text-white">
+              Diagnose, integrate, test, and document
+            </p>
+          </div>
+
+          <div class={surfaces.stat}>
+            <p class="text-xs uppercase tracking-[0.2em] text-zinc-500">
+              Target roles
+            </p>
+
+            <p class="mt-2 text-sm font-semibold text-white">
+              Systems integration, hardware test, and autonomy validation
+            </p>
+          </div>
         </div>
       </aside>
     </section>
@@ -69,7 +103,7 @@ const technicalAreas = [
       </div>
     </section>
 
-    <section class="pt-20">
+    <section class={layout.section}>
       <PageEyebrow label="Focus" />
 
       <h2 class={`mt-3 ${typography.subsectionTitle}`}>
